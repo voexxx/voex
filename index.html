@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOEX NEWS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo">VOEX NEWS <span>CS2</span></div>
+    </a>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="news">Новости</button>
+      <button class="tab" data-tab="teams">Команды</button>
+      <button class="tab" data-tab="matches">Матчи</button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <section id="news" class="section active">
+    <div class="sec-hdr"><div class="sec-title">Новости</div></div>
+    <div id="news-list" class="news-list"></div>
+  </section>
+
+  <section id="teams" class="section">
+    <div class="sec-hdr"><div class="sec-title">Команды</div></div>
+    <div id="teams-list" class="teams-list"></div>
+  </section>
+
+  <section id="matches" class="section">
+    <div class="sec-hdr"><div class="sec-title">Матчи</div></div>
+    <div id="matches-list" class="matches-list"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a class="footer-link">VOEX NEWS</a>
+    <span class="footer-sep">•</span>
+    <a class="footer-link">2024</a>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+
+<script>
+// переключение вкладок
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelector(".tab.active").classList.remove("active");
+    tab.classList.add("active");
+
+    document.querySelector(".section.active").classList.remove("active");
+    document.getElementById(tab.dataset.tab).classList.add("active");
+  });
+});
+
+// новости
+document.getElementById("news-list").innerHTML =
+  DATABASE.news.map(n => `
+    <div class="news-card ${n.featured ? "featured" : ""}">
+      <div class="news-card-top">
+        <span>${n.cat}</span>
+        <span>${n.date}</span>
+      </div>
+      <div class="news-title">${n.title}</div>
+      <p>${n.desc}</p>
+    </div>
+  `).join("");
+
+// команды
+document.getElementById("teams-list").innerHTML =
+  DATABASE.teams.map(t => `
+    <a href="team.html?team=${t.id}" class="team-card">
+      <div class="team-rank">${t.rank}</div>
+      <div class="team-info">
+        <div class="team-name">${t.name}</div>
+        <div class="team-meta">${t.meta}</div>
+      </div>
+      <div class="team-badge">${t.badge}</div>
+    </a>
+  `).join("");
+
+// матчи
+document.getElementById("matches-list").innerHTML =
+  DATABASE.matches.map(m => `
+    <div class="match-card">
+      <div class="match-top">
+        <span>${m.date}</span>
+        <span class="badge-live">LIVE</span>
+      </div>
+
+      <div class="match-format">${m.format}</div>
+
+      <div class="match-body">
+        <div class="match-team">${m.team1}</div>
+        <div class="match-score">${m.score}</div>
+        <div class="match-team r">${m.team2}</div>
+      </div>
+
+      <div class="match-maps">${m.maps.join(" • ")}</div>
+    </div>
+  `).join("");
+</script>
+
+</body>
+</html>
+
+
