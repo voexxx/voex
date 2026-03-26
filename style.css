@@ -477,3 +477,144 @@ body {
 .back-btn:hover {
   opacity: 0.6;
 }
+/* =======================
+   📱 MOBILE ADAPTIVE
+   ======================= */
+
+@media (max-width: 900px) {
+  .main {
+    padding: 15px;
+  }
+
+  .header-inner {
+    padding: 10px 15px 0 15px;
+  }
+
+  .tabs {
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .tab {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  /* Команды */
+  .team-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .team-name {
+    font-size: 15px;
+  }
+
+  .team-meta {
+    font-size: 12px;
+  }
+
+  .team-points {
+    font-size: 13px;
+  }
+
+  /* Новости */
+  .news-card {
+    padding: 14px 16px;
+  }
+
+  .news-title {
+    font-size: 16px;
+  }
+
+  .news-card p {
+    font-size: 13px;
+  }
+
+  /* Матчи */
+  .match-card {
+    padding: 14px 16px;
+  }
+
+  .match-team {
+    font-size: 14px;
+  }
+
+  .match-score {
+    font-size: 18px;
+    padding: 4px 14px;
+  }
+
+  .match-maps {
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  /* Футер */
+  .footer-inner {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .footer-link {
+    font-size: 12px;
+  }
+}
+
+/* =======================
+   📱 TEAM PAGE ADAPTIVE
+   ======================= */
+
+@media (max-width: 900px) {
+  .team-page {
+    padding: 0 15px;
+    margin-top: 40px;
+  }
+
+  .team-title {
+    font-size: 26px;
+  }
+
+  .team-subtitle {
+    font-size: 18px;
+  }
+
+  /* Лайн‑ап перестраивается в 2 ряда */
+  .team-lineup {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .player-slot {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+
+  .player-avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .player-name {
+    font-size: 14px;
+  }
+
+  /* Блоки достижений */
+  .team-info-grid {
+    flex-direction: column;
+  }
+
+  .info-box {
+    padding: 18px;
+  }
+
+  .info-title {
+    font-size: 16px;
+  }
+
+  .info-list li {
+    font-size: 14px;
+  }
+}
