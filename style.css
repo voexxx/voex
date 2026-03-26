@@ -58,7 +58,7 @@ body {
   margin-left: 6px;
 }
 
-/* TABS (главная) */
+/* TABS */
 
 .tabs {
   display: flex;
@@ -86,7 +86,7 @@ body {
   color: var(--text);
 }
 
-/* MAIN (главная) */
+/* MAIN */
 
 .main {
   max-width: 1100px;
@@ -154,7 +154,7 @@ body {
   color: #333;
 }
 
-/* TEAMS (главная) */
+/* TEAMS */
 
 .team-card {
   background: var(--surface);
@@ -166,6 +166,7 @@ body {
   gap: 14px;
   text-decoration: none;
   color: inherit;
+  justify-content: space-between;
 }
 
 .team-rank {
@@ -201,13 +202,16 @@ body {
   flex: 1;
 }
 
-.team-badge {
+/* 🔥 ДОБАВЛЕНО — ОЧКИ СПРАВА */
+
+.team-points {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
 }
 
-/* MATCHES (главная) */
+/* MATCHES */
 
 .match-card {
   background: var(--surface);
@@ -278,7 +282,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* FOOTER (главная) */
+/* FOOTER — ОБНОВЛЁН */
 
 .footer {
   border-top: 1px solid var(--border);
@@ -298,9 +302,15 @@ body {
 
 .footer-link {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 13px;
   color: #555;
   text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-link:hover {
+  color: #000;
 }
 
 .footer-sep {
@@ -329,7 +339,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* ===== LINEUP BLOCK (основной состав) ===== */
+/* LINEUP */
 
 .team-lineup {
   background: #e6e6e6;
@@ -379,8 +389,6 @@ body {
   }
 }
 
-/* СИЛУЭТЫ ×2.5 */
-
 .player-avatar {
   width: 175px;
   height: 175px;
@@ -407,7 +415,7 @@ body {
   color: #000;
 }
 
-/* ===== Достижения + Остальные игроки ===== */
+/* INFO GRID */
 
 .team-info-grid {
   display: flex;
@@ -452,7 +460,7 @@ body {
   color: #333;
 }
 
-/* ===== BACK BUTTON ===== */
+/* BACK BUTTON */
 
 .back-btn {
   display: inline-block;

@@ -26,16 +26,19 @@
 
 <main class="main">
 
+  <!-- Новости -->
   <section id="news" class="section active">
     <div class="sec-hdr"><div class="sec-title">Новости</div></div>
     <div id="news-list" class="news-list"></div>
   </section>
 
+  <!-- Команды -->
   <section id="teams" class="section">
     <div class="sec-hdr"><div class="sec-title">Команды</div></div>
     <div id="teams-list" class="teams-list"></div>
   </section>
 
+  <!-- Матчи -->
   <section id="matches" class="section">
     <div class="sec-hdr"><div class="sec-title">Матчи</div></div>
     <div id="matches-list" class="matches-list"></div>
@@ -45,11 +48,12 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a class="footer-link">VOEX NEWS</a>
+    <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
     <span class="footer-sep">•</span>
-    <a class="footer-link">2024</a>
+    <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
   </div>
 </footer>
+
 
 <script src="data.js"></script>
 
@@ -67,7 +71,7 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 // новости
 document.getElementById("news-list").innerHTML =
-  DATABASE.news.map(n => `
+  (DATABASE.news || []).map(n => `
     <div class="news-card ${n.featured ? "featured" : ""}">
       <div class="news-card-top">
         <span>${n.cat}</span>
@@ -78,22 +82,24 @@ document.getElementById("news-list").innerHTML =
     </div>
   `).join("");
 
-// команды
+// команды (кликабельные)
 document.getElementById("teams-list").innerHTML =
-  DATABASE.teams.map(t => `
-    <a href="team.html?team=${t.id}" class="team-card">
+  (DATABASE.teams || []).map(t => `
+    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card">
       <div class="team-rank">${t.rank}</div>
+
       <div class="team-info">
         <div class="team-name">${t.name}</div>
         <div class="team-meta">${t.meta}</div>
       </div>
-      <div class="team-badge">${t.badge}</div>
+
+      <div class="team-points">Очки: ${t.points ?? 0}</div>
     </a>
   `).join("");
 
 // матчи
 document.getElementById("matches-list").innerHTML =
-  DATABASE.matches.map(m => `
+  (DATABASE.matches || []).map(m => `
     <div class="match-card">
       <div class="match-top">
         <span>${m.date}</span>
@@ -108,12 +114,15 @@ document.getElementById("matches-list").innerHTML =
         <div class="match-team r">${m.team2}</div>
       </div>
 
-      <div class="match-maps">${m.maps.join(" • ")}</div>
+      <div class="match-maps">${(m.maps || []).join(" • ")}</div>
     </div>
   `).join("");
+
+// Discord — жду твою ссылку
+document.getElementById("discord-link").addEventListener("click", () => {
+  alert("Отправь мне свою Discord ссылку, и я вставлю её сюда");
+});
 </script>
 
 </body>
 </html>
-
-
