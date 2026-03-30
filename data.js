@@ -143,6 +143,18 @@ const DATABASE = {
       players: ["ZyuZya", "Kasumi", "timaerror", "Z3roX02", "Bunar"],
       achievements: [],
       otherPlayers: ["VkidGames","ByShine","rix"]
+    },
+    {
+      id: "Team Silvers Academy",
+      rank: "12",
+      name: "Team Silvers Academy",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["n1ght", "fantabym", "guzzy", "gili3cs", "Ehone1j"],
+      achievements: [],
+      otherPlayers: ["b1ndo"]
     }
   ],
 
