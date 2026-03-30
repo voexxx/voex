@@ -155,18 +155,30 @@ const DATABASE = {
       players: ["n1ght", "fantabym", "guzzy", "gili3cs", "Ehone1j"],
       achievements: [],
       otherPlayers: ["b1ndo"]
+    },
+    {
+      id: "Exot Team",
+      rank: "13",
+      name: "Exot Team",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["Varnexx", "VSnipeX", "Skyooo", "Pr0f1d", "Yuki"],
+      achievements: [],
+      otherPlayers: ["Mramor","magixX_2"]
     }
   ],
 
   matches: [
     {
       id: 1,
-      team1: "Ventus Axi",
-      team2: "Unknown Team",
+      team1: "Burmalda",
+      team2: "LUNA",
       score: "2:0",
-      date: "25 МАР",
+      date: "29 МАР",
       format: "BO3",
-      maps: ["Mirage 13:7", "Dust2 13:10"]
+      maps: ["Mirage 13:6", "Nuke 13:7"]
     }
   ]
 };
