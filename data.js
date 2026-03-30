@@ -104,9 +104,9 @@ const DATABASE = {
       badge: "0",
       points: 0,
 
-      players: ["novaprospekt", "gsmod04", "ggg", "kuro", "swokinz"],
+      players: ["Hyp3rs", "hokvv", "ggg", "kuro", "swokinz"],
       achievements: [],
-      otherPlayers: ["Hyp3rs","Hoopz"]
+      otherPlayers: ["novarespect","Hoopz","gsmod04"]
     },
     {
       id: "BCW TEAM",
@@ -119,6 +119,30 @@ const DATABASE = {
       players: ["z3pp", "el1v1o", "flew", "vut1an", "rinex"],
       achievements: [],
       otherPlayers: []
+    },
+    {
+      id: "Blood Owners",
+      rank: "10",
+      name: "Blood Owners",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["kaiori", "mAVR1K", "komuqi", "Cry", "Semen41k"],
+      achievements: [],
+      otherPlayers: ["mesure","Lwftaze","TheKervich","pilotf14","Toys"]
+    },
+    {
+      id: "Team Silvers",
+      rank: "11",
+      name: "Team Silvers",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["ZyuZya", "Kasumi", "timaerror", "Z3roX02", "Bunar"],
+      achievements: [],
+      otherPlayers: ["VkidGames","ByShine","rix"]
     }
   ],
 
