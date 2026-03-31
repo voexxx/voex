@@ -1,21 +1,19 @@
 const params = new URLSearchParams(window.location.search);
 const teamId = decodeURIComponent(params.get("team") || "");
-
 const team = DATABASE.teams.find(t => t.id === teamId);
 
 if (!team) {
   document.querySelector(".team-page").innerHTML = `
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:20px;">Команда не найдена</h1>
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:20px;">Команда не найдена</h1>
     <a href="index.html" class="back-btn">← Назад</a>
   `;
 } else {
-  document.title = `VOEX NEWS — ${team.name}`;
+  document.title = "VOEX NEWS — " + team.name;
   document.getElementById("team-name").textContent = team.name;
 
   // Players
-  const playersEl = document.getElementById("team-players");
-  const validPlayers = team.players.filter(p => p && p.trim() !== "");
-  playersEl.innerHTML = validPlayers.map(p => `
+  const validPlayers = (team.players || []).filter(p => p && p.trim() !== "");
+  document.getElementById("team-players").innerHTML = validPlayers.map(p => `
     <div class="player-slot">
       <div class="player-avatar"></div>
       <div class="player-name">${p}</div>
@@ -31,8 +29,8 @@ if (!team) {
   }
 
   // Other players
-  const otherEl = document.getElementById("team-other");
   const validOther = (team.otherPlayers || []).filter(p => p && p.trim() !== "");
+  const otherEl = document.getElementById("team-other");
   if (validOther.length > 0) {
     otherEl.innerHTML = validOther.map(p => `<li>${p}</li>`).join("");
   } else {

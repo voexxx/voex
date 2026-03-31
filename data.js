@@ -1,5 +1,15 @@
 const DATABASE = {
-  news: [],
+  news: [
+  {
+    id: 1,
+    cat: "NEWS",        // категория
+    date: "31 МАР",       // дата
+    title: "Скоро начало",
+    desc: "Хочу сказать что система уже через пару дней будет работать",
+    featured: true        // если хочешь выделить новость — ставь true
+  }
+],
+
 
   teams: [
     {
@@ -42,16 +52,16 @@ const DATABASE = {
     },
 
     {
-      id: "AsteriaTeam",
+      id: "Asteria Black",
       rank: "4",
       name: "Asteria Team",
       meta: "FACEIT LVL",
       badge: "0",
       points: 0,
 
-      players: ["Arshadow", "kogs1e", "ic3mice", "exe.Team", "rabotnik"],
+      players: ["MoWee", "1nvizy", "aiwqq", "FR1ZYY", "Dosia"],
       achievements: [],
-      otherPlayers: ["dosia666", "Tre3zix", "samorezz", "sos1ska", "n3yzee","shyso","Magolez","Kl1mat","MoWee"]
+      otherPlayers: ["samorezz","Kl1mat"]
     },
 
     {
@@ -83,7 +93,6 @@ const DATABASE = {
       ],
       otherPlayers: ["Dqzz", "Volcane", "Koku", "Whitegodofd"]
     },
-
     {
       id: "Lumen Novara",
       rank: "7",
@@ -92,9 +101,9 @@ const DATABASE = {
       badge: "0",
       points: 0,
 
-      players: ["sh3f", "wiggzes", "neetsky", "Dimonch4k", ""],
+      players: ["sh3f", "wiggzes", "neetsky", "Dimonch4k", "shiy"],
       achievements: [],
-      otherPlayers: ["Romario","Shadow","X1do","Immortal","Vinrise"]
+      otherPlayers: []
     },
     {
       id: "Team Primus",
@@ -104,9 +113,9 @@ const DATABASE = {
       badge: "0",
       points: 0,
 
-      players: ["Hyp3rs", "hokvv", "ggg", "kuro", "swokinz"],
+      players: ["novaprospekt", "gsmod04", "ggg", "kuro", "swokinz"],
       achievements: [],
-      otherPlayers: ["novarespect","Hoopz","gsmod04"]
+      otherPlayers: ["Hyp3rs","Hoopz"]
     },
     {
       id: "BCW TEAM",
@@ -121,40 +130,40 @@ const DATABASE = {
       otherPlayers: []
     },
     {
-      id: "Blood Owners",
-      rank: "10",
-      name: "Blood Owners",
-      meta: "FACEIT LVL",
-      badge: "0",
-      points: 0,
-
-      players: ["kaiori", "mAVR1K", "komuqi", "Cry", "Semen41k"],
-      achievements: [],
-      otherPlayers: ["mesure","Lwftaze","TheKervich","pilotf14","Toys"]
-    },
-    {
       id: "Team Silvers",
-      rank: "11",
+      rank: "10",
       name: "Team Silvers",
       meta: "FACEIT LVL",
       badge: "0",
       points: 0,
 
-      players: ["ZyuZya", "Kasumi", "timaerror", "Z3roX02", "Bunar"],
-      achievements: [],
+      players: ["ZyuZya","timaerror","Kasumi","Z3roX02","Bunar"],
+      achievements: ["2-е место Aventus Cup","8-4 место IPE Major"],
       otherPlayers: ["VkidGames","ByShine","rix"]
     },
     {
       id: "Team Silvers Academy",
-      rank: "12",
+      rank: "11",
       name: "Team Silvers Academy",
       meta: "FACEIT LVL",
       badge: "0",
       points: 0,
 
-      players: ["n1ght", "fantabym", "guzzy", "gili3cs", "Ehone1j"],
+      players: ["n1ght","fantabym","guzzy","gili3cs","Ehone1j"],
       achievements: [],
       otherPlayers: ["b1ndo"]
+    },
+    {
+      id: "Blood Owners",
+      rank: "12",
+      name: "Blood Owners",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["Cry","komuqi","mAVR1K","Semen41K","kaiori"],
+      achievements: [],
+      otherPlayers: ["mesure","Lwftaze","TheKervich","pilotf14","Toys"]
     },
     {
       id: "Exot Team",
@@ -164,9 +173,33 @@ const DATABASE = {
       badge: "0",
       points: 0,
 
-      players: ["Varnexx", "VSnipeX", "Skyooo", "Pr0f1d", "Yuki"],
+      players: ["Varnexx","VSnipeX","Skyooo","Pr0f1d","Yuki"],
       achievements: [],
-      otherPlayers: ["Mramor","magixX_2"]
+      otherPlayers: ["magixX_2"]
+    },
+    {
+      id: "Team Expoo",
+      rank: "14",
+      name: "Team Expoo",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["shintrix","zelofa1n","dortiz","sw1k","NEXT_TIME"],
+      achievements: ["3-4 place BLASTY OPEN WINTER","2nd place BLASTY PRO LEAGUE 2","3-4 place TABURETKA CUP","3-4 place RAZE CUP SEASON 5"],
+      otherPlayers: ["MDB","Lord_Elite","Xandow"]
+    },
+    {
+      id: "Lumen Novara Academy",
+      rank: "15",
+      name: "Lumen Novara Academy",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["Romario","Shadow","X1do","Immortal","Vinrise"],
+      achievements: [],
+      otherPlayers: []
     }
   ],
 
@@ -176,7 +209,7 @@ const DATABASE = {
       team1: "Burmalda",
       team2: "LUNA",
       score: "2:0",
-      date: "29 МАР",
+      date: "25 МАР",
       format: "BO3",
       maps: ["Mirage 13:6", "Nuke 13:7"]
     }
