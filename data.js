@@ -199,7 +199,7 @@ const DATABASE = {
 
       players: ["Romario","Shadow","X1do","Immortal","Vinrise"],
       achievements: [],
-      otherPlayers: []
+      otherPlayers: ["Sday","King666","Hatyykk"]
     }
   ],
 
@@ -207,7 +207,7 @@ const DATABASE = {
     {
       id: 1,
       team1: "Burmalda",
-      team2: "LUNA",
+      team2: "Lumen Novara",
       score: "2:0",
       date: "25 МАР",
       format: "BO3",

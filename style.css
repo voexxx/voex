@@ -78,7 +78,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ===== LOGO — Bebas Neue ===== */
 .logo {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 400;
@@ -104,7 +103,7 @@ body {
 }
 
 /* ================================
-   TABS — underline style
+   TABS
    ================================ */
 
 .tabs {
@@ -143,12 +142,7 @@ body {
 
 .tab:hover { color: var(--text); }
 .tab:hover::after { transform: scaleX(0.5); }
-
-.tab.active {
-  color: var(--text);
-  font-weight: 600;
-}
-
+.tab.active { color: var(--text); font-weight: 600; }
 .tab.active::after { transform: scaleX(1); }
 
 /* ================================
@@ -196,7 +190,6 @@ body {
   overflow: hidden;
   transition: all 0.3s ease;
   cursor: default;
-
   opacity: 0;
   animation: fadeInUp 0.4s ease forwards;
 }
@@ -212,13 +205,8 @@ body {
   transition: transform 0.3s ease;
 }
 
-.news-card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-3px);
-}
-
+.news-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
 .news-card:hover::before { transform: scaleY(1); }
-
 .news-card.featured { border-left: 3px solid var(--accent); }
 .news-card.featured::before { display: none; }
 
@@ -286,12 +274,10 @@ body {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-
   opacity: 0;
   animation: fadeInUp 0.4s ease forwards;
 }
 
-/* Ghost rank number */
 .team-card::before {
   content: attr(data-rank);
   position: absolute;
@@ -307,7 +293,6 @@ body {
   transition: color 0.3s ease;
 }
 
-/* Blue left bar */
 .team-card::after {
   content: '';
   position: absolute;
@@ -319,11 +304,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-.team-card:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
-}
-
+.team-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
 .team-card:hover::after { transform: scaleY(1); }
 
 .team-rank {
@@ -373,94 +354,113 @@ body {
 }
 
 /* ================================
-   MATCHES
+   MATCHES — COMPACT (пункт 1)
    ================================ */
 
 .matches-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .match-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  padding: 18px 22px;
+  /* Уменьшены отступы — карточка компактнее */
+  padding: 10px 16px;
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
-
   opacity: 0;
   animation: fadeInUp 0.4s ease forwards;
 }
 
 .match-card:hover {
   box-shadow: var(--shadow-hover);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
+/* Единая строка: дата · формат слева, карты справа */
 .match-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 11px;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  gap: 8px;
 }
 
-/* badge-live убран из HTML — стиль оставлен на случай если понадобится */
 .badge-live { display: none; }
-
-.match-format {
-  font-size: 11px;
-  text-align: center;
-  color: var(--muted);
-  margin-bottom: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
 
 .match-body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .match-team {
   font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -0.02em;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .match-team.r { text-align: right; }
 
 .match-score {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
-  padding: 7px 18px;
+  padding: 4px 14px;
   background: var(--bg);
   border: 1px solid var(--border);
   text-align: center;
   white-space: nowrap;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .match-maps {
-  margin-top: 14px;
+  margin-top: 7px;
   font-size: 11px;
   color: var(--muted);
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 .match-map-item {
-  padding: 3px 9px;
+  padding: 2px 8px;
   background: var(--bg);
   border: 1px solid var(--border);
   font-weight: 500;
+  font-size: 10px;
+}
+
+/* ================================
+   MATCH-CARD внутри страницы команды
+   (чуть другой вид — без анимации opacity:0)
+   ================================ */
+
+.team-matches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.team-matches-list .match-card {
+  opacity: 1;
+  animation: none;
+}
+
+.team-matches-empty {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  padding: 6px 0;
 }
 
 /* ================================
@@ -498,13 +498,8 @@ body {
 }
 
 .footer-link:hover { color: var(--text); }
-
 .footer-sep { color: var(--border); font-size: 16px; padding: 0 2px; }
-
-.footer-copy {
-  font-size: 11px;
-  color: var(--muted);
-}
+.footer-copy { font-size: 11px; color: var(--muted); }
 
 /* ================================
    ABOUT PAGE
@@ -614,19 +609,18 @@ body {
 }
 
 /* ================================
-   LINEUP — светлый фон
+   LINEUP
    ================================ */
 
 .team-lineup {
   background: #f0f2f5;
   border: 1px solid var(--border);
-  padding: 30px 22px 20px;
+  padding: 28px 16px 20px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 6px;
+  gap: 4px;
   margin-bottom: 20px;
-
   opacity: 0;
   animation: fadeInUp 0.5s ease 0.1s forwards;
 }
@@ -636,8 +630,7 @@ body {
   flex-direction: column;
   align-items: center;
   flex: 1;
-  max-width: 150px;
-
+  min-width: 0;
   opacity: 0;
   animation: fadeInUp 0.4s ease forwards;
 }
@@ -649,13 +642,14 @@ body {
 .player-slot:nth-child(5) { animation-delay: 0.22s; }
 
 .player-avatar {
-  width: 100px;
-  height: 100px;
+  /* Растягиваем на всю ширину слота — на десктопе ~180–200px */
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 1 / 1;
   background: url("sg.png") center/contain no-repeat;
-  opacity: 0.55;
+  opacity: 0.6;
   margin-bottom: 10px;
   transition: all 0.3s ease;
-  /* убрали invert — фон светлый, аватарка показывается нормально */
 }
 
 .player-name {
@@ -665,28 +659,30 @@ body {
   text-align: center;
   transition: color 0.3s ease;
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
-.player-slot:hover .player-avatar {
-  opacity: 1;
-  transform: translateY(-6px);
-}
-
-.player-slot:hover .player-name {
-  color: var(--text);
-}
+.player-slot:hover .player-avatar { opacity: 1; transform: translateY(-6px); }
+.player-slot:hover .player-name { color: var(--text); }
 
 /* ================================
-   TEAM INFO GRID
+   TEAM INFO GRID (2 колонки)
    ================================ */
 
 .team-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-
   opacity: 0;
   animation: fadeInUp 0.5s ease 0.35s forwards;
+}
+
+/* Полноширинный блок (матчи команды) */
+.team-info-grid .info-box-full {
+  grid-column: 1 / -1;
 }
 
 .info-box {
@@ -700,6 +696,12 @@ body {
 .info-box:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
+}
+
+/* Блок матчей — не двигается при hover */
+.info-box-full:hover {
+  transform: none;
+  box-shadow: var(--shadow);
 }
 
 .info-title {
@@ -796,7 +798,6 @@ body {
 @media (max-width: 768px) {
   :root { --pad: 16px; }
 
-  /* Header — лого и табы вертикально */
   .header-inner {
     flex-direction: column;
     align-items: stretch;
@@ -826,121 +827,73 @@ body {
   }
 
   .tab:last-child { border-right: none; }
+  .tab::after { left: 12px; right: 12px; }
 
-  .tab::after {
-    left: 12px;
-    right: 12px;
-  }
-
-  /* Main */
   .main { padding: 18px var(--pad) 48px; }
-
   .sec-hdr { margin-bottom: 14px; }
   .sec-title { font-size: 20px; }
 
-  /* News */
-  .news-card {
-    padding: 14px 15px;
-  }
-
+  .news-card { padding: 14px 15px; }
   .news-title { font-size: 14px; }
   .news-card p { font-size: 12px; line-height: 1.5; }
-  .news-card-top { margin-bottom: 6px; }
 
-  /* Teams */
-  .team-card {
-    padding: 13px 14px;
-    gap: 12px;
-  }
-
-  .team-rank {
-    width: 26px;
-    height: 26px;
-    font-size: 11px;
-  }
-
+  .team-card { padding: 13px 14px; gap: 12px; }
+  .team-rank { width: 26px; height: 26px; font-size: 11px; }
   .team-name  { font-size: 13px; }
-  .team-meta  { font-size: 11px; margin-top: 1px; }
+  .team-meta  { font-size: 11px; }
   .team-points { font-size: 11px; padding-right: 36px; }
   .team-card::before { font-size: 34px; right: 10px; }
 
-  /* Matches */
-  .match-card { padding: 14px 15px; }
+  .match-card { padding: 9px 13px; }
+  .match-team  { font-size: 13px; }
+  .match-score { font-size: 14px; padding: 3px 10px; }
+  .match-maps  { font-size: 10px; gap: 5px; margin-top: 7px; }
+  .match-body  { gap: 8px; }
 
-  .match-team { font-size: 14px; }
-  .match-score { font-size: 16px; padding: 5px 12px; }
-  .match-maps  { font-size: 11px; gap: 6px; margin-top: 12px; }
-  .match-map-item { padding: 3px 8px; }
-  .match-body { gap: 10px; }
-
-  /* Footer */
   .footer { padding: 16px 0; }
-  .footer-inner {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
+  .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
   .footer-links { justify-content: center; flex-wrap: wrap; }
-  .footer-copy { font-size: 11px; }
 
-  /* Team page */
   .team-page { padding: 22px var(--pad) 48px; }
-
   .team-title { font-size: 34px; }
 
   .team-lineup {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px 12px 16px;
-    gap: 6px;
-  }
-
-  /* На мобиле показываем 5 игроков в ряд по ~60px */
-  .player-slot {
-    max-width: 60px;
-    flex: 0 0 calc(20% - 6px);
-  }
-
-  .player-avatar { width: 52px; height: 52px; }
-  .player-name { font-size: 10px; }
-
-  .team-info-grid {
-    grid-template-columns: 1fr;
+    padding: 18px 12px 14px;
     gap: 8px;
   }
+
+  /* 3 игрока в ряд — ~30% ширины каждый */
+  .player-slot {
+    max-width: none;
+    flex: 0 0 calc(33.33% - 8px);
+  }
+
+  .player-avatar { max-width: 90px; }
+  .player-name { font-size: 11px; }
+
+  .team-info-grid { grid-template-columns: 1fr; gap: 8px; }
+  .team-info-grid .info-box-full { grid-column: 1; }
 
   .info-box { padding: 16px 18px; }
   .info-title { font-size: 10px; }
   .info-list li { font-size: 13px; padding: 6px 0; }
 
-  /* About */
   .about { margin: 40px auto; }
   .about-title { font-size: 44px; }
   .about-text { font-size: 14px; }
-  .about-links { gap: 8px; }
-  .about-social { padding: 8px 16px; font-size: 12px; }
 }
-
-/* ================================
-   MOBILE — 420px
-   ================================ */
 
 @media (max-width: 420px) {
   .logo { font-size: 20px; }
-
   .tab { font-size: 11px; height: 42px; }
-
   .match-body { gap: 6px; }
-  .match-team { font-size: 13px; }
-  .match-score { font-size: 14px; padding: 4px 10px; }
-
-  .player-slot { flex: 0 0 calc(20% - 4px); max-width: 54px; }
-  .player-avatar { width: 46px; height: 46px; }
-
+  .match-team { font-size: 12px; }
+  .match-score { font-size: 13px; padding: 3px 9px; }
+  .player-slot { flex: 0 0 calc(33.33% - 4px); max-width: none; }
+  .player-avatar { max-width: 80px; }
   .about-title { font-size: 36px; }
-
   .team-title { font-size: 28px; }
-
   .footer-link { font-size: 11px; padding: 4px 8px; }
 }

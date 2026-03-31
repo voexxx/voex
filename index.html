@@ -50,7 +50,7 @@
       <span class="footer-sep">·</span>
       <a class="footer-link" href="about.html">О нас</a>
     </div>
-    <div class="footer-copy">© 2025 VOEX NEWS</div>
+    <div class="footer-copy">© 2026 VOEX NEWS</div>
   </div>
 </footer>
 
@@ -66,8 +66,23 @@
       if (prev === next) return;
       prev.classList.remove("active");
       next.classList.add("active");
+      sessionStorage.setItem("lastTab", tab.dataset.tab);
     });
   });
+
+  // Восстанавливаем вкладку после возврата со страницы команды
+  const lastTab = sessionStorage.getItem("lastTab");
+  if (lastTab) {
+    sessionStorage.removeItem("lastTab");
+    const targetTab = document.querySelector(`.tab[data-tab="${lastTab}"]`);
+    const targetSection = document.getElementById(lastTab);
+    if (targetTab && targetSection) {
+      document.querySelector(".tab.active").classList.remove("active");
+      document.querySelector(".section.active").classList.remove("active");
+      targetTab.classList.add("active");
+      targetSection.classList.add("active");
+    }
+  }
 
   // News
   const newsList = document.getElementById("news-list");
@@ -89,7 +104,8 @@
   // Teams — sorted by rank
   const sorted = [...(DATABASE.teams || [])].sort((a, b) => Number(a.rank) - Number(b.rank));
   document.getElementById("teams-list").innerHTML = sorted.map(t => `
-    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card" data-rank="${t.rank}">
+    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card" data-rank="${t.rank}"
+       onclick="sessionStorage.setItem('lastTab','teams')">
       <div class="team-rank">${t.rank}</div>
       <div class="team-info">
         <div class="team-name">${t.name}</div>

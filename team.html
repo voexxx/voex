@@ -28,17 +28,28 @@
   <div id="team-players" class="team-lineup"></div>
 
   <div class="team-info-grid">
+
+    <!-- Достижения -->
     <div class="info-box">
       <div class="info-title">Достижения</div>
       <ul id="team-achievements" class="info-list"></ul>
     </div>
+
+    <!-- Остальные игроки -->
     <div class="info-box">
       <div class="info-title">Остальные игроки</div>
       <ul id="team-other" class="info-list"></ul>
     </div>
+
+    <!-- Матчи команды — полная ширина -->
+    <div class="info-box info-box-full">
+      <div class="info-title">Матчи</div>
+      <div id="team-matches" class="team-matches-list"></div>
+    </div>
+
   </div>
 
-  <a href="index.html" class="back-btn">← Назад</a>
+  <a href="index.html" class="back-btn" onclick="history.length > 1 ? (history.back(), event.preventDefault()) : null">← Назад</a>
 
 </main>
 
