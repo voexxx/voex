@@ -200,7 +200,19 @@ const DATABASE = {
       players: ["Romario","Shadow","X1do","Immortal","Vinrise"],
       achievements: [],
       otherPlayers: ["Sday","King666","Hatyykk"]
-    }
+    },
+    {
+      id: "Barebuh Team",
+      rank: "16",
+      name: "Barebuh Team",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["aori","r3kn","Maloy","blessedrecode","Leha epta"],
+      achievements: [],
+      otherPlayers: ["Popo4ka"]
+    }  
   ],
 
   matches: [
