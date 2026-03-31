@@ -58,13 +58,19 @@ if (!team) {
       const ourName  = isTeam1 ? m.team1 : m.team2;
       const oppName  = isTeam1 ? m.team2 : m.team1;
 
+      // Переворачиваем счёт если мы team2
+      // Формат "2:0" → если мы team2, показываем "0:2"
+      let score = m.score || "— : —";
+      if (!isTeam1 && score.includes(":")) {
+        const parts = score.split(":");
+        score = parts[1].trim() + " : " + parts[0].trim();
+      }
+
       // Ссылка на страницу противника
       const oppTeam = DATABASE.teams.find(t => t.name === oppName);
       const oppLink = oppTeam
         ? `<a href="team.html?team=${encodeURIComponent(oppTeam.id)}" class="match-team-link">${oppName}</a>`
         : `<span>${oppName}</span>`;
-
-      const score = m.score || "— : —";
 
       const maps = (m.maps || []).map(mp =>
         `<span class="match-map-item">${mp}</span>`
