@@ -50,7 +50,7 @@
       <span class="footer-sep">·</span>
       <a class="footer-link" href="about.html">О нас</a>
     </div>
-    <div class="footer-copy">© 2026 VOEX NEWS</div>
+    <div class="footer-copy">© 2025 VOEX NEWS</div>
   </div>
 </footer>
 
@@ -115,8 +115,20 @@
     </a>
   `).join("");
 
-  // Matches — NO live badge
+  // Matches — NO live badge, team names clickable
   const matchesList = document.getElementById("matches-list");
+
+  // Хелпер: ищет id команды по имени
+  function teamLink(name) {
+    const t = (DATABASE.teams || []).find(t => t.name === name);
+    if (t) {
+      return `<a href="team.html?team=${encodeURIComponent(t.id)}"
+                 class="match-team-link"
+                 onclick="sessionStorage.setItem('lastTab','matches')">${name}</a>`;
+    }
+    return `<span class="match-team-plain">${name}</span>`;
+  }
+
   if (DATABASE.matches && DATABASE.matches.length > 0) {
     matchesList.innerHTML = DATABASE.matches.map(m => `
       <div class="match-card">
@@ -125,9 +137,9 @@
           <span>${m.format || ""}</span>
         </div>
         <div class="match-body">
-          <div class="match-team">${m.team1 || ""}</div>
+          <div class="match-team">${teamLink(m.team1 || "")}</div>
           <div class="match-score">${m.score || "— : —"}</div>
-          <div class="match-team r">${m.team2 || ""}</div>
+          <div class="match-team r">${teamLink(m.team2 || "")}</div>
         </div>
         <div class="match-maps">
           ${(m.maps || []).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}

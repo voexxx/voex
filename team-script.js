@@ -58,7 +58,12 @@ if (!team) {
       const ourName  = isTeam1 ? m.team1 : m.team2;
       const oppName  = isTeam1 ? m.team2 : m.team1;
 
-      // Счёт: если формат "2:1" — показываем как есть
+      // Ссылка на страницу противника
+      const oppTeam = DATABASE.teams.find(t => t.name === oppName);
+      const oppLink = oppTeam
+        ? `<a href="team.html?team=${encodeURIComponent(oppTeam.id)}" class="match-team-link">${oppName}</a>`
+        : `<span>${oppName}</span>`;
+
       const score = m.score || "— : —";
 
       const maps = (m.maps || []).map(mp =>
@@ -73,7 +78,7 @@ if (!team) {
           <div class="match-body">
             <div class="match-team">${ourName}</div>
             <div class="match-score">${score}</div>
-            <div class="match-team r">${oppName}</div>
+            <div class="match-team r">${oppLink}</div>
           </div>
           ${maps ? `<div class="match-maps">${maps}</div>` : ""}
         </div>

@@ -390,6 +390,31 @@ body {
   gap: 8px;
 }
 
+/* Кликабельное название команды в матче */
+.match-team-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.match-team-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.match-team-link:hover { color: var(--accent); }
+.match-team-link:hover::after { transform: scaleX(1); }
+
+.match-team-plain { font-weight: 700; }
+
 .badge-live { display: none; }
 
 .match-body {
@@ -796,8 +821,9 @@ body {
    ================================ */
 
 @media (max-width: 768px) {
-  :root { --pad: 16px; }
+  :root { --pad: 15px; }
 
+  /* ── Header ── */
   .header-inner {
     flex-direction: column;
     align-items: stretch;
@@ -807,9 +833,11 @@ body {
   }
 
   .logo-link {
-    padding: 14px var(--pad) 10px;
+    padding: 13px var(--pad) 11px;
     border-bottom: 1px solid var(--border);
   }
+
+  .logo { font-size: 19px; }
 
   .tabs {
     width: 100%;
@@ -819,7 +847,7 @@ body {
 
   .tab {
     padding: 0;
-    height: 44px;
+    height: 42px;
     font-size: 12px;
     font-weight: 500;
     justify-content: center;
@@ -827,73 +855,107 @@ body {
   }
 
   .tab:last-child { border-right: none; }
-  .tab::after { left: 12px; right: 12px; }
+  .tab::after { left: 10px; right: 10px; }
 
-  .main { padding: 18px var(--pad) 48px; }
-  .sec-hdr { margin-bottom: 14px; }
-  .sec-title { font-size: 20px; }
+  /* ── Main ── */
+  .main { padding: 16px var(--pad) 48px; }
+  .sec-hdr { margin-bottom: 12px; }
+  .sec-title { font-size: 19px; }
 
-  .news-card { padding: 14px 15px; }
+  /* ── News ── */
+  .news-card { padding: 13px 14px; }
   .news-title { font-size: 14px; }
   .news-card p { font-size: 12px; line-height: 1.5; }
+  .news-card-top { margin-bottom: 6px; }
 
-  .team-card { padding: 13px 14px; gap: 12px; }
-  .team-rank { width: 26px; height: 26px; font-size: 11px; }
+  /* ── Teams ── */
+  .team-card { padding: 12px 13px; gap: 11px; }
+  .team-rank { width: 25px; height: 25px; font-size: 11px; }
   .team-name  { font-size: 13px; }
-  .team-meta  { font-size: 11px; }
-  .team-points { font-size: 11px; padding-right: 36px; }
-  .team-card::before { font-size: 34px; right: 10px; }
+  .team-meta  { font-size: 11px; margin-top: 1px; }
+  .team-points { font-size: 11px; padding-right: 34px; }
+  .team-card::before { font-size: 32px; right: 9px; }
 
-  .match-card { padding: 9px 13px; }
+  /* ── Matches ── */
+  .match-card { padding: 10px 14px; }
+  .match-top  { margin-bottom: 8px; font-size: 11px; }
+  .match-body { gap: 8px; }
   .match-team  { font-size: 13px; }
-  .match-score { font-size: 14px; padding: 3px 10px; }
-  .match-maps  { font-size: 10px; gap: 5px; margin-top: 7px; }
-  .match-body  { gap: 8px; }
+  .match-score { font-size: 15px; padding: 4px 11px; }
+  .match-maps  { font-size: 10px; gap: 5px; margin-top: 8px; }
+  .match-map-item { padding: 2px 7px; }
 
-  .footer { padding: 16px 0; }
-  .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+  /* ── Footer ── */
+  .footer { padding: 14px 0; }
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
   .footer-links { justify-content: center; flex-wrap: wrap; }
+  .footer-copy { font-size: 11px; }
 
-  .team-page { padding: 22px var(--pad) 48px; }
-  .team-title { font-size: 34px; }
+  /* ── Team page ── */
+  .team-page { padding: 20px var(--pad) 48px; }
+  .team-eyebrow { font-size: 10px; }
+  .team-title { font-size: 32px; }
+  .team-subtitle { font-size: 10px; margin-bottom: 10px; }
 
+  /* ── Lineup: 2 ряда по 3, нормальный размер ── */
   .team-lineup {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 18px 12px 14px;
-    gap: 8px;
+    align-items: flex-end;
+    padding: 20px 10px 14px;
+    gap: 6px;
   }
 
-  /* 3 игрока в ряд — ~30% ширины каждый */
   .player-slot {
-    max-width: none;
-    flex: 0 0 calc(33.33% - 8px);
+    flex: 0 0 calc(33.33% - 6px);
+    max-width: calc(33.33% - 6px);
   }
 
-  .player-avatar { max-width: 90px; }
+  /* Аватарка занимает всю ширину слота */
+  .player-avatar {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .player-name { font-size: 11px; }
 
+  /* ── Info grid ── */
   .team-info-grid { grid-template-columns: 1fr; gap: 8px; }
   .team-info-grid .info-box-full { grid-column: 1; }
-
-  .info-box { padding: 16px 18px; }
-  .info-title { font-size: 10px; }
+  .info-box { padding: 15px 16px; }
+  .info-title { font-size: 10px; margin-bottom: 10px; }
   .info-list li { font-size: 13px; padding: 6px 0; }
 
-  .about { margin: 40px auto; }
-  .about-title { font-size: 44px; }
+  /* ── About ── */
+  .about { margin: 36px auto; }
+  .about-title { font-size: 42px; }
   .about-text { font-size: 14px; }
+  .about-social { padding: 8px 16px; font-size: 12px; }
+
+  /* ── Back button ── */
+  .back-btn { margin-top: 22px; }
 }
 
 @media (max-width: 420px) {
-  .logo { font-size: 20px; }
-  .tab { font-size: 11px; height: 42px; }
+  :root { --pad: 13px; }
+
+  .logo { font-size: 18px; }
+  .tab { font-size: 11px; height: 40px; }
+
+  .sec-title { font-size: 18px; }
+
   .match-body { gap: 6px; }
-  .match-team { font-size: 12px; }
+  .match-team  { font-size: 12px; }
   .match-score { font-size: 13px; padding: 3px 9px; }
-  .player-slot { flex: 0 0 calc(33.33% - 4px); max-width: none; }
-  .player-avatar { max-width: 80px; }
-  .about-title { font-size: 36px; }
-  .team-title { font-size: 28px; }
-  .footer-link { font-size: 11px; padding: 4px 8px; }
+
+  /* 3 в ряд на совсем маленьком экране */
+  .player-slot { flex: 0 0 calc(33.33% - 4px); max-width: calc(33.33% - 4px); }
+
+  .about-title { font-size: 34px; }
+  .team-title  { font-size: 26px; }
+
+  .footer-link { font-size: 11px; padding: 4px 7px; }
+
+  .team-card::before { display: none; }
+  .team-points { padding-right: 0; }
 }
