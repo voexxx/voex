@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VOEX NEWS — CS2</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>VOEX NEWS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader">
+  <div class="page-loader-inner">VOEX NEWS</div>
+</div>
 
 <header class="header">
   <div class="header-inner">
@@ -56,7 +61,7 @@
 
 <script src="data.js"></script>
 <script>
-  // Tab switching
+  // ── Tab switching ──────────────────────────────────────
   document.querySelectorAll(".tab").forEach(tab => {
     tab.addEventListener("click", () => {
       document.querySelector(".tab.active").classList.remove("active");
@@ -70,21 +75,21 @@
     });
   });
 
-  // Восстанавливаем вкладку после возврата со страницы команды
+  // FIX #2: восстанавливаем нужную вкладку после возврата с team.html
   const lastTab = sessionStorage.getItem("lastTab");
   if (lastTab) {
     sessionStorage.removeItem("lastTab");
-    const targetTab = document.querySelector(`.tab[data-tab="${lastTab}"]`);
-    const targetSection = document.getElementById(lastTab);
-    if (targetTab && targetSection) {
+    const tTab = document.querySelector(`.tab[data-tab="${lastTab}"]`);
+    const tSec = document.getElementById(lastTab);
+    if (tTab && tSec) {
       document.querySelector(".tab.active").classList.remove("active");
       document.querySelector(".section.active").classList.remove("active");
-      targetTab.classList.add("active");
-      targetSection.classList.add("active");
+      tTab.classList.add("active");
+      tSec.classList.add("active");
     }
   }
 
-  // News
+  // ── News ───────────────────────────────────────────────
   const newsList = document.getElementById("news-list");
   if (DATABASE.news && DATABASE.news.length > 0) {
     newsList.innerHTML = DATABASE.news.map(n => `
@@ -101,10 +106,10 @@
     newsList.innerHTML = `<div class="news-empty">Новостей пока нет — следите за обновлениями</div>`;
   }
 
-  // Teams — sorted by rank
+  // ── Teams ──────────────────────────────────────────────
   const sorted = [...(DATABASE.teams || [])].sort((a, b) => Number(a.rank) - Number(b.rank));
   document.getElementById("teams-list").innerHTML = sorted.map(t => `
-    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card" data-rank="${t.rank}"
+    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card"
        onclick="sessionStorage.setItem('lastTab','teams')">
       <div class="team-rank">${t.rank}</div>
       <div class="team-info">
@@ -115,20 +120,19 @@
     </a>
   `).join("");
 
-  // Matches — NO live badge, team names clickable
-  const matchesList = document.getElementById("matches-list");
-
-  // Хелпер: ищет id команды по имени
-  function teamLink(name) {
+  // ── Matches ────────────────────────────────────────────
+  // Хелпер: кликабельное имя команды
+  function teamLink(name, tab) {
     const t = (DATABASE.teams || []).find(t => t.name === name);
     if (t) {
       return `<a href="team.html?team=${encodeURIComponent(t.id)}"
                  class="match-team-link"
-                 onclick="sessionStorage.setItem('lastTab','matches')">${name}</a>`;
+                 onclick="sessionStorage.setItem('lastTab','${tab}')">${name}</a>`;
     }
     return `<span class="match-team-plain">${name}</span>`;
   }
 
+  const matchesList = document.getElementById("matches-list");
   if (DATABASE.matches && DATABASE.matches.length > 0) {
     matchesList.innerHTML = DATABASE.matches.map(m => `
       <div class="match-card">
@@ -137,9 +141,9 @@
           <span>${m.format || ""}</span>
         </div>
         <div class="match-body">
-          <div class="match-team">${teamLink(m.team1 || "")}</div>
+          <div class="match-team">${teamLink(m.team1 || "", "matches")}</div>
           <div class="match-score">${m.score || "— : —"}</div>
-          <div class="match-team r">${teamLink(m.team2 || "")}</div>
+          <div class="match-team r">${teamLink(m.team2 || "", "matches")}</div>
         </div>
         <div class="match-maps">
           ${(m.maps || []).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
