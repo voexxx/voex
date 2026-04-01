@@ -32,17 +32,60 @@ if (!team) {
     ? validOther.map(p => `<li>${p}</li>`).join("")
     : `<li class="info-empty">Нет данных</li>`;
 
-  // ── Матчи команды (FIX #5) ─────────────────────────────
-  // Матч добавляется в data.js один раз:
-  //   { id:2, team1:"Burmalda", team2:"MVTeam", score:"2:1",
-  //     date:"28 МАР", format:"BO3", maps:["Mirage 13:8","Nuke 10:13"] }
-  // Появляется на страницах обеих команд автоматически.
-  // Счёт переворачивается если текущая команда — team2.
-
+  // ── Матчи команды ─────────────────────────────────────
   const teamMatches = (DATABASE.matches || []).filter(
     m => m.team1 === team.name || m.team2 === team.name
   );
 
+  // ── Винрейт ────────────────────────────────────────────
+  // Победа:   наш счёт > их счёт (2:0 или 2:1)
+  // Поражение: наш счёт < их счёт (0:2 или 1:2)
+  const winrateEl = document.getElementById("team-winrate");
+
+  if (teamMatches.length === 0) {
+    winrateEl.innerHTML = "";
+  } else {
+    let wins = 0, losses = 0;
+
+    teamMatches.forEach(m => {
+      const isTeam1 = m.team1 === team.name;
+      const rawScore = (m.score || "").replace(/\s/g, "");
+      if (!rawScore.includes(":")) return;
+      const parts = rawScore.split(":");
+      const our  = parseInt(isTeam1 ? parts[0] : parts[1], 10);
+      const they = parseInt(isTeam1 ? parts[1] : parts[0], 10);
+      if (isNaN(our) || isNaN(they)) return;
+      if (our > they) wins++;
+      else if (they > our) losses++;
+    });
+
+    const total = wins + losses;
+    const pct   = total > 0 ? Math.round((wins / total) * 100) : 0;
+
+    winrateEl.innerHTML = `
+      <div class="winrate-block">
+        <div class="winrate-stat">
+          <span class="winrate-stat-value win">${wins}</span>
+          <span class="winrate-stat-label">Победы</span>
+        </div>
+        <div class="winrate-stat">
+          <span class="winrate-stat-value loss">${losses}</span>
+          <span class="winrate-stat-label">Поражения</span>
+        </div>
+        <div class="winrate-bar-wrap">
+          <div class="winrate-bar-label">
+            <span>Винрейт</span>
+            <span>${pct}%</span>
+          </div>
+          <div class="winrate-bar">
+            <div class="winrate-bar-fill" style="width: ${pct}%"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ── Рендер матчей ─────────────────────────────────────
   const matchesEl = document.getElementById("team-matches");
 
   if (!teamMatches.length) {
@@ -53,15 +96,22 @@ if (!team) {
       const ourName = isTeam1 ? m.team1 : m.team2;
       const oppName = isTeam1 ? m.team2 : m.team1;
 
-      // FIX: переворачиваем счёт для team2
-      // "2:0" у team1 → "0:2" у team2
+      // Переворачиваем счёт для team2
       let score = m.score || "— : —";
-      if (!isTeam1 && score.includes(":")) {
-        const p = score.split(":");
-        score = p[1].trim() + ":" + p[0].trim();
+      let isWin = null;
+      if (score.includes(":")) {
+        const raw = score.replace(/\s/g, "").split(":");
+        const our  = parseInt(isTeam1 ? raw[0] : raw[1], 10);
+        const they = parseInt(isTeam1 ? raw[1] : raw[0], 10);
+        if (!isNaN(our) && !isNaN(they)) isWin = our > they;
+        if (!isTeam1) score = raw[1] + ":" + raw[0];
       }
 
-      // Ссылка на противника
+      const resultBadge = isWin === null ? ""
+        : isWin
+          ? `<span class="match-result win">Победа</span>`
+          : `<span class="match-result loss">Поражение</span>`;
+
       const oppTeam = DATABASE.teams.find(t => t.name === oppName);
       const oppHtml = oppTeam
         ? `<a href="team.html?team=${encodeURIComponent(oppTeam.id)}" class="match-team-link">${oppName}</a>`
@@ -74,8 +124,8 @@ if (!team) {
       return `
         <div class="match-card">
           <div class="match-top">
-            <span>${m.date || ""}</span>
-            <span>${m.format || ""}</span>
+            <span>${m.date || ""} · ${m.format || ""}</span>
+            ${resultBadge}
           </div>
           <div class="match-body">
             <div class="match-team">${ourName}</div>

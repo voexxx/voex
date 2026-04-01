@@ -230,12 +230,19 @@ body {
 
 .news-card:hover::before { background: var(--accent); }
 
+/* featured — без красной рамки по умолчанию, только лёгкий градиент */
 .news-card.featured {
   background: linear-gradient(135deg, #fff 60%, #fff8f6);
-  border-color: var(--accent);
 }
 
+/* Красная полоска слева только у featured (всегда, как маркер) */
 .news-card.featured::before { background: var(--accent); }
+
+/* Красная рамка появляется только при нажатии (tap / click) */
+.news-card:active {
+  border-color: var(--accent);
+  transform: translateY(0);
+}
 
 .news-card-top {
   display: flex; justify-content: space-between; align-items: center;
@@ -411,7 +418,102 @@ body {
   border-radius: 4px;
 }
 
-/* Матчи внутри страницы команды */
+/* ================================
+   WINRATE BLOCK
+   ================================ */
+
+.winrate-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+
+  opacity: 0;
+  animation: cardIn 0.5s cubic-bezier(0.4,0,0.2,1) 0.3s forwards;
+}
+
+.winrate-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.winrate-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text);
+  line-height: 1;
+}
+
+.winrate-stat-value.win  { color: #2a9d5c; }
+.winrate-stat-value.loss { color: var(--accent); }
+
+.winrate-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.winrate-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.winrate-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.winrate-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.winrate-bar-fill {
+  height: 100%;
+  background: #2a9d5c;
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.winrate-no-matches {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: italic;
+}
+
+/* match result badge */
+.match-result {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.match-result.win  { background: rgba(42,157,92,0.12); color: #2a9d5c; }
+.match-result.loss { background: rgba(214,62,42,0.10); color: var(--accent); }
 .team-matches-list { display: flex; flex-direction: column; gap: 6px; }
 .team-matches-list .match-card { opacity: 1; animation: none; transform: none; }
 .team-matches-empty {
@@ -772,22 +874,22 @@ body {
   .team-header { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 22px; }
   .team-title  { font-size: 28px; }
 
-  /* FIX #1 #7: Lineup — 3 в ряд с нормальным размером */
+  /* Lineup — все 5 в один ряд */
   .team-lineup {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px 10px 14px;
-    gap: 8px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 16px 10px 12px;
+    gap: 4px;
   }
 
   .player-slot {
-    flex: 0 0 calc(33.33% - 8px);
-    max-width: calc(33.33% - 8px);
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
   }
 
-  /* avatar занимает всю ширину слота */
   .player-avatar { max-width: 100%; }
-  .player-name   { font-size: 11px; }
+  .player-name   { font-size: 10px; }
 
   /* Info grid */
   .team-info-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -819,10 +921,11 @@ body {
   .match-team { font-size: 13px; }
   .match-score{ font-size: 13px; padding: 3px 9px; }
 
-  /* 3 в ряд на самых маленьких экранах */
+  /* 5 в ряд и на самых маленьких экранах */
   .player-slot {
-    flex: 0 0 calc(33.33% - 6px);
-    max-width: calc(33.33% - 6px);
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
   }
 
   .about-title { font-size: 28px; }
