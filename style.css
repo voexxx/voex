@@ -521,6 +521,145 @@ body {
   font-family: 'IBM Plex Mono', monospace; font-style: italic;
 }
 
+/* ── Collapse / expand матчей ── */
+.matches-collapsed .match-card-hidden {
+  display: none;
+}
+
+.matches-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.matches-toggle-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.matches-toggle-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-style: normal;
+}
+
+.matches-toggle-btn.expanded .matches-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Form chart ── */
+/* ── Points chart ── */
+
+.form-chart-wrap {
+  margin-top: 16px;
+  padding: 14px 16px 14px 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.form-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+.form-chart-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.form-chart-cur {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.form-chart-svg {
+  width: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* Линия — рисуется анимацией */
+.form-chart-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLine 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+.form-chart-area {
+  opacity: 0;
+  animation: fadeArea 0.5s ease 1.3s forwards;
+}
+
+@keyframes fadeArea { to { opacity: 1; } }
+
+.form-chart-dot {
+  opacity: 0;
+  animation: dotPop 0.3s ease forwards;
+}
+
+@keyframes dotPop { to { opacity: 1; } }
+
+.form-chart-no-data {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  padding-left: 8px;
+}
+
+/* ── Team points badge ── */
+.team-points-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+.team-points-badge-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 /* ================================
    FOOTER — always bottom
    ================================ */

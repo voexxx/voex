@@ -212,7 +212,31 @@ const DATABASE = {
       players: ["aori","r3kn","Maloy","blessedrecode","Leha epta"],
       achievements: [],
       otherPlayers: ["Popo4ka"]
-    }  
+    }, 
+    {
+      id: "HYDRA eSports",
+      rank: "17",
+      name: "HYDRA eSports",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["Rawlod","Lapatasion","z1pqt","1nference","st0nks"],
+      achievements: [],
+      otherPlayers: ["theYELLSS"]
+    },
+    {
+      id: "Warm Ray Team",
+      rank: "18",
+      name: "Warm Ray Team",
+      meta: "FACEIT LVL",
+      badge: "0",
+      points: 0,
+
+      players: ["Blex","k1ll0byte","4shist","s1baa","methody"],
+      achievements: [],
+      otherPlayers: [""]
+    }
   ],
 
   matches: [
