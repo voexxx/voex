@@ -60,6 +60,7 @@
 </footer>
 
 <script src="data.js"></script>
+<script src="engine.js"></script>
 <script>
   // ── Tab switching ──────────────────────────────────────
   document.querySelectorAll(".tab").forEach(tab => {
@@ -106,19 +107,23 @@
     newsList.innerHTML = `<div class="news-empty">Новостей пока нет — следите за обновлениями</div>`;
   }
 
-  // ── Teams ──────────────────────────────────────────────
-  const sorted = [...(DATABASE.teams || [])].sort((a, b) => Number(a.rank) - Number(b.rank));
-  document.getElementById("teams-list").innerHTML = sorted.map(t => `
+  // ── Teams — автоматический ранг и очки через VOEX.engine ──
+  const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
+
+  document.getElementById("teams-list").innerHTML = finalSorted.map((t, i) => {
+    const rank = rankMap.get(t.name) ?? (i + 1);
+    const pts  = finalMap.get(t.name) ?? 0;
+    return `
     <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card"
        onclick="sessionStorage.setItem('lastTab','teams')">
-      <div class="team-rank">${t.rank}</div>
+      <div class="team-rank">${rank}</div>
       <div class="team-info">
         <div class="team-name">${t.name}</div>
         <div class="team-meta">${t.meta}</div>
       </div>
-      <div class="team-points">${t.points ?? 0} pts</div>
-    </a>
-  `).join("");
+      <div class="team-points">${pts} pts</div>
+    </a>`;
+  }).join("");
 
   // ── Matches ────────────────────────────────────────────
   // Хелпер: кликабельное имя команды

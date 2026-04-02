@@ -186,19 +186,21 @@ if (!team) {
     }
   }
 
-  // ── Поинты команды ────────────────────────────────────
-  const pointsBadgeEl = document.getElementById("team-points-badge");
-  const currentPoints = team.points ?? 0;
+  // ── Поинты команды (авто через VOEX engine) ───────────────
+  const { finalMap, rankMap, bonusActive } = VOEX.buildRankings();
+  const currentPoints  = finalMap.get(team.name) ?? 0;
+  const currentRank    = rankMap.get(team.name) ?? "—";
+  const pointsBadgeEl  = document.getElementById("team-points-badge");
   pointsBadgeEl.innerHTML = `
     <div class="team-points-badge">
       <span class="team-points-badge-label">Очки</span>
       <span>${currentPoints} pts</span>
+      <span class="team-points-badge-label" style="margin-left:8px">Ранг</span>
+      <span>#${currentRank}</span>
     </div>`;
 
   // ── SVG-график поинтов (+25 победа / -25 поражение) ────
   function buildFormChart(data) {
-    const POINT_WIN  =  25;
-    const POINT_LOSS = -25;
     const results = data.filter(d => d.isWin !== null);
 
     if (results.length === 0) {
@@ -210,10 +212,15 @@ if (!team) {
       </div>`;
     }
 
+    // Используем реальные очки из engine (с учётом бонуса за ранг)
+    // VOEX.matchPoints возвращает [{match, pts, bonus, result}] в порядке матчей
+    const { rankMap: tempRank, bonusActive: ba } = VOEX.buildRankings();
+    const enginePts = VOEX.matchPoints(team.name, tempRank, ba);
+
     // Накапливаем поинты: точка 0 = старт (0)
     const pts = [0];
-    results.forEach(d => {
-      pts.push(pts[pts.length - 1] + (d.isWin ? POINT_WIN : POINT_LOSS));
+    enginePts.forEach(ep => {
+      pts.push(pts[pts.length - 1] + ep.pts);
     });
 
     const minVal = Math.min(...pts);
