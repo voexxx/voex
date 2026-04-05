@@ -15,18 +15,18 @@ const DATABASE = {
       id: "Ventus Axi",
       name: "Ventus Axi",
       meta: "FACEIT LVL",
-      players: ["m0nday", "squan", "v1ns", "SAQik444", "Yud0qq"],
+      players: ["m0nday", "JaTz", "v1ns", "argyle", ""],
       achievements: [],
-      otherPlayers: [""]
+      otherPlayers: ["Yud0qq"]
     },
 
     {
       id: "Burmalda",
       name: "Burmalda",
       meta: "FACEIT LVL",
-      players: ["V1zer", "Wackzzy", "hyse1n", "kashap", "LatypOFF"],
+      players: ["V1zer", "Wackzzy", "Soplenok", "dexperon", "LatypOFF"],
       achievements: [],
-      otherPlayers: ["Kv1zzy"]
+      otherPlayers: ["haku666"]
     },
 
     {
@@ -60,13 +60,13 @@ const DATABASE = {
       id: "MVTeam",
       name: "MVTeam",
       meta: "FACEIT LVL",
-      players: ["m0nst0r", "Bat1r", "Alalkai", "RAVEN", "Topy"],
+      players: ["m0nst0r", "Dqzz", "Alalkai", "RAVEN", "Topy"],
       achievements: [
         "RIEM RIO - 1 place",
         "Aventus Cup - 3-4 place",
         "W Starladder - 3 place"
       ],
-      otherPlayers: ["Dqzz", "Volcane", "Koku", "Whitegodofd"]
+      otherPlayers: ["Volcane", "Koku", "S1eep"]
     },
     {
       id: "Lumen Novara",
@@ -113,7 +113,7 @@ const DATABASE = {
       name: "Blood Owners",
       meta: "FACEIT LVL",
       players: ["Cry","komuqi","mAVR1K","Semen41K","kaiori"],
-      achievements: [],
+      achievements: ["Reload Cup 3 - place"],
       otherPlayers: ["mesure","Lwftaze","TheKervich","pilotf14","Toys"]
     },
     {
@@ -128,7 +128,7 @@ const DATABASE = {
       id: "Team Expoo",
       name: "Team Expoo",
       meta: "FACEIT LVL",
-      players: ["shintrix","zelofa1n","dortiz","sw1k","NEXT_TIME"],
+      players: ["shintrix","zelofa1n","wedding","sw1k","NEXT_TIME"],
       achievements: ["3-4 place BLASTY OPEN WINTER","2nd place BLASTY PRO LEAGUE 2","3-4 place TABURETKA CUP","3-4 place RAZE CUP SEASON 5"],
       otherPlayers: ["MDB","Lord_Elite","Xandow"]
     },
@@ -144,7 +144,7 @@ const DATABASE = {
       id: "Barebuh Team",
       name: "Barebuh Team",
       meta: "FACEIT LVL",
-      players: ["aori","r3kn","Maloy","blessedrecode","Leha epta"],
+      players: ["aori","r3kn","Goidmen","blessedrecode","Leha epta"],
       achievements: [],
       otherPlayers: ["Popo4ka"]
     },
