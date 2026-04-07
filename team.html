@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Команда</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+  <title>VOEX NEWS — Команда</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader">
+  <div class="page-loader-inner">VOEX NEWS</div>
+</div>
 
 <header class="header">
   <div class="header-inner">
@@ -19,9 +23,19 @@
 </header>
 
 <main class="team-page">
-  <h1 id="team-name" class="team-title"></h1>
 
-  <h2 class="team-subtitle">Основной состав</h2>
+  <div class="team-header">
+    <div>
+      <div class="team-eyebrow">Команда</div>
+      <h1 id="team-name" class="team-title"></h1>
+      <div id="team-points-badge"></div>
+    </div>
+  </div>
+
+  <!-- Блок винрейта -->
+  <div id="team-winrate"></div>
+
+  <div class="team-subtitle">Основной состав</div>
   <div id="team-players" class="team-lineup"></div>
 
   <div class="team-info-grid">
@@ -36,15 +50,35 @@
       <ul id="team-other" class="info-list"></ul>
     </div>
 
+    <!-- FIX #4: блок матчей на всю ширину -->
+    <div class="info-box info-box-full">
+      <div class="info-title">Матчи</div>
+      <div id="team-matches" class="team-matches-list"></div>
+    </div>
+
   </div>
 
-  <a href="index.html" class="back-btn">← Назад</a>
+  <!-- FIX #2: history.back возвращает на нужную вкладку -->
+  <a href="index.html" class="back-btn"
+     onclick="if(history.length > 1){ history.back(); event.preventDefault(); }">← Назад</a>
+
 </main>
 
-<script src="data.js"></script>
-<script src="team-script.js"></script>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="about.html">О нас</a>
+    </div>
+    <div class="footer-copy">© 2026 VOEX NEWS</div>
+  </div>
+</footer>
 
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="team-script.js"></script>
 </body>
 </html>
-
-

@@ -4,18 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOEX NEWS</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=DM+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader">
+  <div class="page-loader-inner">VOEX NEWS</div>
+</div>
 
 <header class="header">
   <div class="header-inner">
     <a href="index.html" class="logo-link">
       <div class="logo">VOEX NEWS <span>CS2</span></div>
     </a>
-
     <div class="tabs">
       <button class="tab active" data-tab="news">Новости</button>
       <button class="tab" data-tab="teams">Команды</button>
@@ -26,19 +29,16 @@
 
 <main class="main">
 
-  <!-- Новости -->
   <section id="news" class="section active">
     <div class="sec-hdr"><div class="sec-title">Новости</div></div>
     <div id="news-list" class="news-list"></div>
   </section>
 
-  <!-- Команды -->
   <section id="teams" class="section">
     <div class="sec-hdr"><div class="sec-title">Команды</div></div>
     <div id="teams-list" class="teams-list"></div>
   </section>
 
-  <!-- Матчи -->
   <section id="matches" class="section">
     <div class="sec-hdr"><div class="sec-title">Матчи</div></div>
     <div id="matches-list" class="matches-list"></div>
@@ -48,80 +48,116 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
-    <span class="footer-sep">•</span>
-    <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
+    <div class="footer-links">
+      <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="about.html">О нас</a>
+    </div>
+    <div class="footer-copy">© 2026 VOEX NEWS</div>
   </div>
 </footer>
 
-
 <script src="data.js"></script>
-
+<script src="engine.js"></script>
 <script>
-// переключение вкладок
-document.querySelectorAll(".tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelector(".tab.active").classList.remove("active");
-    tab.classList.add("active");
-
-    document.querySelector(".section.active").classList.remove("active");
-    document.getElementById(tab.dataset.tab).classList.add("active");
+  // ── Tab switching ──────────────────────────────────────
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelector(".tab.active").classList.remove("active");
+      tab.classList.add("active");
+      const prev = document.querySelector(".section.active");
+      const next = document.getElementById(tab.dataset.tab);
+      if (prev === next) return;
+      prev.classList.remove("active");
+      next.classList.add("active");
+      sessionStorage.setItem("lastTab", tab.dataset.tab);
+    });
   });
-});
 
-// новости
-document.getElementById("news-list").innerHTML =
-  (DATABASE.news || []).map(n => `
-    <div class="news-card ${n.featured ? "featured" : ""}">
-      <div class="news-card-top">
-        <span>${n.cat}</span>
-        <span>${n.date}</span>
+  // FIX #2: восстанавливаем нужную вкладку после возврата с team.html
+  const lastTab = sessionStorage.getItem("lastTab");
+  if (lastTab) {
+    sessionStorage.removeItem("lastTab");
+    const tTab = document.querySelector(`.tab[data-tab="${lastTab}"]`);
+    const tSec = document.getElementById(lastTab);
+    if (tTab && tSec) {
+      document.querySelector(".tab.active").classList.remove("active");
+      document.querySelector(".section.active").classList.remove("active");
+      tTab.classList.add("active");
+      tSec.classList.add("active");
+    }
+  }
+
+  // ── News ───────────────────────────────────────────────
+  const newsList = document.getElementById("news-list");
+  if (DATABASE.news && DATABASE.news.length > 0) {
+    newsList.innerHTML = DATABASE.news.map(n => `
+      <div class="news-card ${n.featured ? "featured" : ""}">
+        <div class="news-card-top">
+          <span class="news-cat">${n.cat || "Новость"}</span>
+          <span>${n.date || ""}</span>
+        </div>
+        <div class="news-title">${n.title}</div>
+        <p>${n.desc || ""}</p>
       </div>
-      <div class="news-title">${n.title}</div>
-      <p>${n.desc}</p>
-    </div>
-  `).join("");
+    `).join("");
+  } else {
+    newsList.innerHTML = `<div class="news-empty">Новостей пока нет — следите за обновлениями</div>`;
+  }
 
-// команды (кликабельные)
-document.getElementById("teams-list").innerHTML =
-  (DATABASE.teams || []).map(t => `
-    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card">
-      <div class="team-rank">${t.rank}</div>
+  // ── Teams — автоматический ранг и очки через VOEX.engine ──
+  const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
 
+  document.getElementById("teams-list").innerHTML = finalSorted.map((t, i) => {
+    const rank = rankMap.get(t.name) ?? (i + 1);
+    const pts  = finalMap.get(t.name) ?? 0;
+    return `
+    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card"
+       onclick="sessionStorage.setItem('lastTab','teams')">
+      <div class="team-rank">${rank}</div>
       <div class="team-info">
         <div class="team-name">${t.name}</div>
         <div class="team-meta">${t.meta}</div>
       </div>
+      <div class="team-points">${pts} pts</div>
+    </a>`;
+  }).join("");
 
-      <div class="team-points">Очки: ${t.points ?? 0}</div>
-    </a>
-  `).join("");
+  // ── Matches ────────────────────────────────────────────
+  // Хелпер: кликабельное имя команды
+  function teamLink(name, tab) {
+    const t = (DATABASE.teams || []).find(t => t.name === name);
+    if (t) {
+      return `<a href="team.html?team=${encodeURIComponent(t.id)}"
+                 class="match-team-link"
+                 onclick="sessionStorage.setItem('lastTab','${tab}')">${name}</a>`;
+    }
+    return `<span class="match-team-plain">${name}</span>`;
+  }
 
-// матчи
-document.getElementById("matches-list").innerHTML =
-  (DATABASE.matches || []).map(m => `
-    <div class="match-card">
-      <div class="match-top">
-        <span>${m.date}</span>
-        <span class="badge-live">LIVE</span>
+  const matchesList = document.getElementById("matches-list");
+  if (DATABASE.matches && DATABASE.matches.length > 0) {
+    matchesList.innerHTML = DATABASE.matches.map(m => `
+      <div class="match-card">
+        <div class="match-top">
+          <span>${m.date || ""}</span>
+          <span>${m.format || ""}</span>
+        </div>
+        <div class="match-body">
+          <div class="match-team">${teamLink(m.team1 || "", "matches")}</div>
+          <div class="match-score">${m.score || "— : —"}</div>
+          <div class="match-team r">${teamLink(m.team2 || "", "matches")}</div>
+        </div>
+        <div class="match-maps">
+          ${(m.maps || []).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
+        </div>
       </div>
-
-      <div class="match-format">${m.format}</div>
-
-      <div class="match-body">
-        <div class="match-team">${m.team1}</div>
-        <div class="match-score">${m.score}</div>
-        <div class="match-team r">${m.team2}</div>
-      </div>
-
-      <div class="match-maps">${(m.maps || []).join(" • ")}</div>
-    </div>
-  `).join("");
-
-// Discord — жду твою ссылку
-document.getElementById("discord-link").addEventListener("click", () => {
-  alert("Отправь мне свою Discord ссылку, и я вставлю её сюда");
-});
+    `).join("");
+  } else {
+    matchesList.innerHTML = `<div class="news-empty">Матчей пока нет</div>`;
+  }
 </script>
 
 </body>
