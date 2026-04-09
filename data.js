@@ -66,15 +66,15 @@ const DATABASE = {
         "Aventus Cup - 3-4 place",
         "W Starladder - 3 place"
       ],
-      otherPlayers: ["Volcane", "Koku", "S1eep"]
+      otherPlayers: ["Volcane", "Koku", "S1eep","S1lent"]
     },
     {
       id: "Lumen Novara",
       name: "Lumen Novara",
       meta: "FACEIT LVL",
-      players: ["sh3f", "wiggzes", "neetsky", "Dimonch4k", "shiy"],
+      players: ["sh3f", "wiggzes", "neetsky", "north", "shiy"],
       achievements: [],
-      otherPlayers: []
+      otherPlayers: ["Dimonch4k"]
     },
     {
       id: "Team Primus",
@@ -136,9 +136,9 @@ const DATABASE = {
       id: "Lumen Novara Academy",
       name: "Lumen Novara Academy",
       meta: "FACEIT LVL",
-      players: ["Romario","Shadow","X1do","Immortal","Vinrise"],
+      players: ["Romario","Shadow","X1do","Beaut1full","Vinrise"],
       achievements: [],
-      otherPlayers: ["Sday","King666","Hatyykk"]
+      otherPlayers: ["King666","Hatyykk"]
     },
     {
       id: "Barebuh Team",
