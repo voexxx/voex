@@ -3,9 +3,9 @@ const DATABASE = {
   {
     id: 1,
     cat: "NEWS",        // категория
-    date: "31 МАР",       // дата
-    title: "Скоро начало",
-    desc: "Хочу сказать что система уже через пару дней будет работать",
+    date: "10 апреля",       // дата
+    title: "Lumen Novara Academy -> SunCry",
+    desc: "LUNA Ac.-они теперь независимая команда,под названием - SunCry",
     featured: true        // если хочешь выделить новость — ставь true
   }
 ],
@@ -133,8 +133,8 @@ const DATABASE = {
       otherPlayers: ["MDB","Lord_Elite","Xandow"]
     },
     {
-      id: "Lumen Novara Academy",
-      name: "Lumen Novara Academy",
+      id: "SunCry",
+      name: "SunCry",
       meta: "FACEIT LVL",
       players: ["Romario","Shadow","X1do","Beaut1full","Vinrise"],
       achievements: [],
