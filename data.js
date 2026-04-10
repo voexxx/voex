@@ -163,6 +163,22 @@ const DATABASE = {
       players: ["st0nks","1nference","z1pqt","Lapatasion","Rawlod"],
       achievements: [],
       otherPlayers: ["theYELLSS"]
+    },
+	{
+      id: "R8G",
+      name: "R8G",
+      meta: "FACEIT LVL",
+      players: ["Kickpo","tragedy","marcus","Elo>girl","Yasuo"],
+      achievements: [],
+      otherPlayers: [""]
+    },
+	{
+      id: "BlaiZ",
+      name: "BlaiZ",
+      meta: "FACEIT LVL",
+      players: ["弗拉德","HaKu666","LeviT","1mmortal","s1ntroo666"],
+      achievements: [],
+      otherPlayers: [""]
     }
   ],
 
