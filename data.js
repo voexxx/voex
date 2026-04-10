@@ -185,12 +185,12 @@ const DATABASE = {
   matches: [
     {
       id: 1,
-      team1: "Burmalda",
-      team2: "Lumen Novara",
-      score: "2:0",
-      date: "25 МАР",
+      team1: "BlaiZ",
+      team2: "White Team",
+      score: "1:0",
+      date: "10 АПР",
       format: "BO3",
-      maps: ["Mirage 13:6", "Nuke 13:7"]
+      maps: [""]
     }
   ]
 };
