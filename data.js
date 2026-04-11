@@ -15,7 +15,8 @@ const DATABASE = {
       id: "Ventus Axi",
       name: "Ventus Axi",
       meta: "FACEIT LVL",
-      players: ["m0nday", "JaTz", "v1ns", "argyle", "uJL6ab"],
+      telegram: "https://t.me/veaxteam",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["m0nday", "JaTz", "v1ns", "argyle", "deadend"],
       achievements: [],
       otherPlayers: ["Yud0qq","WIzEr 0_o"]
     },
@@ -24,6 +25,7 @@ const DATABASE = {
       id: "Burmalda",
       name: "Burmalda",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/burmaldak1",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["V1zer", "Wackzzy", "Soplenok", "dexperon", "LatypOFF"],
       achievements: [],
       otherPlayers: ["haku666"]
@@ -33,6 +35,7 @@ const DATABASE = {
       id: "Asteria Black",
       name: "Asteria Black",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/asteriateam1",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["MoWee", "s0lkes", "aiwqq", "FR1ZYY", "Dosia"],
       achievements: [],
       otherPlayers: ["samorezz","Kl1mat"]
@@ -40,8 +43,9 @@ const DATABASE = {
 
     {
       id: "Team61",
-      name: "Team 61",
+      name: "Team61",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/teamcs61",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["kyrlin", "Altreezz", "Kurok1sh1", "lov3zzy", "farrrr"],
       achievements: [],
       otherPlayers: ["VaRked666"]
@@ -51,6 +55,7 @@ const DATABASE = {
       id: "MVTeam",
       name: "MVTeam",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/MVTeamcs",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["m0nst0r", "Dqzz", "Alalkai", "RAVEN", "Topy"],
       achievements: [
         "RIEM RIO - 1 place",
@@ -63,6 +68,7 @@ const DATABASE = {
       id: "Lumen Novara",
       name: "Lumen Novara",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/LUNAtcs2",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["sh3f", "wiggzes", "neetsky", "north", "shiy"],
       achievements: [],
       otherPlayers: ["Dimonch4k"]
@@ -71,6 +77,7 @@ const DATABASE = {
       id: "Team Primus",
       name: "Team Primus",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/teamprimuscs2",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["novaprospekt", "gsmod04", "ggg", "kuro", "swokinz"],
       achievements: [],
       otherPlayers: ["Hyp3rs","Hoopz"]
@@ -79,6 +86,7 @@ const DATABASE = {
       id: "BCW TEAM",
       name: "BCW TEAM",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/BCWTEAM",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["z3pp", "el1v1o", "flew", "vut1an", "rinex"],
       achievements: [],
       otherPlayers: []
@@ -87,6 +95,7 @@ const DATABASE = {
       id: "Team Silvers",
       name: "Team Silvers",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/team_silvers",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["ZyuZya","timaerror","Kasumi","Z3roX02","Bunar"],
       achievements: ["2-е место Aventus Cup","8-4 место IPE Major"],
       otherPlayers: ["VkidGames","ByShine","rix"]
@@ -95,6 +104,7 @@ const DATABASE = {
       id: "Team Silvers Academy",
       name: "Team Silvers Academy",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/team_silvers",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["n1ght","fantabym","guzzy","gili3cs","Ehone1j"],
       achievements: [],
       otherPlayers: ["b1ndo"]
@@ -103,14 +113,16 @@ const DATABASE = {
       id: "Blood Owners",
       name: "Blood Owners",
       meta: "FACEIT LVL",
-      players: ["Cry","komuqi","mAVR1K","Semen41K","kaiori"],
+      telegram: "https://t.me/BloodOwnersCS",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["Cry","komuqi","mAVR1K","Semen41K","lwftaze"],
       achievements: ["Reload Cup 3 - place"],
-      otherPlayers: ["mesure","Lwftaze","TheKervich","pilotf14","Toys"]
+      otherPlayers: ["mesure","TheKervich","pilotf14","Toys"]
     },
     {
       id: "Exot Team",
       name: "Exot Team",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/EXOOTTEAM",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["VARNEX","VSnipeX","Skyooo","Pr0f1d","Yuki"],
       achievements: [],
       otherPlayers: ["magixX_2","Mramor"]
@@ -119,6 +131,7 @@ const DATABASE = {
       id: "Team Expoo",
       name: "Team Expoo",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/ExpooTeam",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["shintrix","zelofa1n","wedding","sw1k","NEXT_TIME"],
       achievements: ["3-4 place BLASTY OPEN WINTER","2nd place BLASTY PRO LEAGUE 2","3-4 place TABURETKA CUP","3-4 place RAZE CUP SEASON 5"],
       otherPlayers: ["MDB","Lord_Elite","Xandow"]
@@ -127,6 +140,7 @@ const DATABASE = {
       id: "SunCry",
       name: "SunCry",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/suncryesport",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["Romario","Shadow","X1do","Beaut1full","Vinrise"],
       achievements: [],
       otherPlayers: ["King666","Hatyykk"]
@@ -135,6 +149,7 @@ const DATABASE = {
       id: "Barebuh Team",
       name: "Barebuh Team",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/barebuhteam",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["aori","r3kn","Goidmen","blessedrecode","Leha epta"],
       achievements: [],
       otherPlayers: ["Popo4ka"]
@@ -143,7 +158,8 @@ const DATABASE = {
       id: "Warm Ray Team",
       name: "Warm Ray Team",
       meta: "FACEIT LVL",
-      players: ["Blex","k1llobyte","4shist","s1baa","methody"],
+      telegram: "https://t.me/Team_WarmRay",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["Blex98","hayzen","Propan1","s1baa","_kiryyy666"],
       achievements: [],
       otherPlayers: [""]
     }, 
@@ -151,6 +167,7 @@ const DATABASE = {
       id: "HYDRA eSports",
       name: "HYDRA eSports",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/HYDRAeSportsCS",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["st0nks","1nference","z1pqt","Lapatasion","Rawlod"],
       achievements: [],
       otherPlayers: ["theYELLSS"]
@@ -159,6 +176,7 @@ const DATABASE = {
       id: "R8G",
       name: "R8G",
       meta: "FACEIT LVL",
+      telegram: "https://t.me/r8gem",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["Kickpo","tragedy","marcus","Elo>girl","Yasuo"],
       achievements: [],
       otherPlayers: [""]
@@ -167,9 +185,19 @@ const DATABASE = {
       id: "BlaiZ",
       name: "BlaiZ",
       meta: "FACEIT LVL",
-      players: ["弗拉德","HaKu666","LeviT","1mmortal","s1ntroo666"],
+      telegram: "https://t.me/blaiZEsports",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["v1zer¿¿¿","twelve666","LeviT","1mmortal","s1ntroo666"],
       achievements: [],
       otherPlayers: [""]
+    },
+	{
+      id: "Phantom eSports",
+      name: "Phantom eSports",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/phantomespt",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["dextrometrophan","DJ","wuthename","hearteater","xleb666"],
+      achievements: [],
+      otherPlayers: ["swagger","Fayno","ddsnik"]
     }
   ],
 

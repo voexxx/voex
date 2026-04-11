@@ -21,7 +21,7 @@
     </a>
     <div class="tabs">
       <button class="tab active" data-tab="news">Новости</button>
-      <button class="tab" data-tab="teams">Команды</button>
+      <button class="tab" data-tab="teams">Рейтинг</button>
       <button class="tab" data-tab="matches">Матчи</button>
     </div>
   </div>
@@ -35,7 +35,7 @@
   </section>
 
   <section id="teams" class="section">
-    <div class="sec-hdr"><div class="sec-title">Команды</div></div>
+    <div class="sec-hdr"><div class="sec-title">Рейтинг</div></div>
     <div id="teams-list" class="teams-list"></div>
   </section>
 
@@ -110,6 +110,21 @@
   // ── Teams — автоматический ранг и очки через VOEX.engine ──
   const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
 
+  // Хелпер: SVG-placeholder для лого
+  const logoPlaceholder = `<svg class="team-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </svg>`;
+
+  // Хелпер: лого команды по id (папка logo/)
+  function getLogoHtml(team, cls, size) {
+    const logoSrc = `logo/${team.id}.jpg`;
+    return `<div class="${cls}">
+      <img src="${logoSrc}" alt="${team.name}"
+           onerror="this.parentElement.innerHTML='${logoPlaceholder.replace(/"/g, '&quot;')}'">
+    </div>`;
+  }
+
   document.getElementById("teams-list").innerHTML = finalSorted.map((t, i) => {
     const rank = rankMap.get(t.name) ?? (i + 1);
     const pts  = finalMap.get(t.name) ?? 0;
@@ -117,6 +132,7 @@
     <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card"
        onclick="sessionStorage.setItem('lastTab','teams')">
       <div class="team-rank">${rank}</div>
+      ${getLogoHtml(t, "team-logo")}
       <div class="team-info">
         <div class="team-name">${t.name}</div>
         <div class="team-meta">${t.meta}</div>
@@ -126,17 +142,24 @@
   }).join("");
 
   // ── Matches ────────────────────────────────────────────
-  // Хелпер: кликабельное имя команды
-  function teamLink(name, tab) {
+  // team1: [лого][ник]  score  [ник][лого] :team2
+  function teamMatchBlock(name, isRight, tab) {
     const t = (DATABASE.teams || []).find(t => t.name === name);
-    if (t) {
-      return `<a href="team.html?team=${encodeURIComponent(t.id)}"
-                 class="match-team-link"
-                 onclick="sessionStorage.setItem('lastTab','${tab}')">${name}</a>`;
-    }
-    return `<span class="match-team-plain">${name}</span>`;
-  }
+    const logoSrc = t ? `logo/${t.id}.jpg` : null;
 
+    const logoHtml = `<div class="match-team-logo">${
+      logoSrc
+        ? `<img src="${logoSrc}" alt="${name}" onerror="this.style.display='none'">`
+        : `<svg class="match-team-logo-svg" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`
+    }</div>`;
+
+    const nameHtml = t
+      ? `<a href="team.html?team=${encodeURIComponent(t.id)}" class="match-team-link" onclick="sessionStorage.setItem('lastTab','${tab}')">${name}</a>`
+      : `<span class="match-team-plain">${name || "—"}</span>`;
+
+    // CSS flex-direction: row-reverse на .match-team.r даёт порядок: ник → лого
+    return `<div class="match-team${isRight ? " r" : ""}">${logoHtml}${nameHtml}</div>`;
+  }
   const matchesList = document.getElementById("matches-list");
   if (DATABASE.matches && DATABASE.matches.length > 0) {
     matchesList.innerHTML = DATABASE.matches.map(m => `
@@ -146,12 +169,12 @@
           <span>${m.format || ""}</span>
         </div>
         <div class="match-body">
-          <div class="match-team">${teamLink(m.team1 || "", "matches")}</div>
+          ${teamMatchBlock(m.team1 || "", false, "matches")}
           <div class="match-score">${m.score || "— : —"}</div>
-          <div class="match-team r">${teamLink(m.team2 || "", "matches")}</div>
+          ${teamMatchBlock(m.team2 || "", true, "matches")}
         </div>
         <div class="match-maps">
-          ${(m.maps || []).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
+          ${(m.maps || []).filter(mp => mp && mp.trim()).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
         </div>
       </div>
     `).join("");

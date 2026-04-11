@@ -372,13 +372,29 @@ body {
   gap: 12px;
 }
 
-.match-team { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-.match-team.r { text-align: right; }
+/* Левая команда: лого слева, ник справа от него */
+.match-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  min-width: 0;
+}
+
+/* Правая команда: ник слева, лого справа, всё прижато вправо */
+.match-team.r {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
 
 /* Кликабельные команды в матчах */
 .match-team-link {
   color: inherit; text-decoration: none; font-weight: 700;
   position: relative; transition: color var(--transition);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .match-team-link::after {
@@ -392,7 +408,7 @@ body {
 .match-team-link:hover { color: var(--accent); }
 .match-team-link:hover::after { transform: scaleX(1); }
 
-.match-team-plain { font-weight: 700; }
+.match-team-plain { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .match-score {
   font-family: 'IBM Plex Mono', monospace;
@@ -754,18 +770,12 @@ body {
 }
 
 .team-header {
-  margin-bottom: 32px;
-  display: flex; align-items: flex-end;
-  justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 0;
 }
 
-.team-eyebrow {
-  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
-  text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--muted); margin-bottom: 8px;
-}
+.team-eyebrow { display: none; }
 
-.team-title { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.team-title { display: none; }
 
 .team-subtitle {
   font-size: 13px; font-weight: 600;
@@ -775,69 +785,191 @@ body {
 }
 
 /* ================================
-   LINEUP — FIX #1 #9
+   HLTV-STYLE LINEUP
    ================================ */
 
-.team-lineup {
-  /* FIX #9: светлый фон вместо чёрного */
-  background: #eceae4;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 16px 20px;
+/* Верхняя панель команды: лого + инфо + Telegram */
+/* ================================
+   HLTV-STYLE IDENTITY & LINEUP
+   ================================ */
+
+.team-identity {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 6px;
-  margin-bottom: 24px;
-
-  opacity: 0; transform: translateY(20px);
-  animation: lineupFade 0.7s cubic-bezier(0.4,0,0.2,1) 0.1s forwards;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  background: #2c2b28;
+  border-radius: 14px 14px 0 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-@keyframes lineupFade { to { opacity: 1; transform: translateY(0); } }
-
-.player-slot {
-  display: flex; flex-direction: column; align-items: center;
-  /* FIX #1: flex:1 — растягивается на всю доступную ширину */
-  flex: 1; min-width: 0;
-  cursor: default;
-
-  opacity: 0; transform: translateY(30px);
-  animation: playerPop 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+.team-logo-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
-.player-slot:nth-child(1) { animation-delay: 0.20s; }
-.player-slot:nth-child(2) { animation-delay: 0.30s; }
-.player-slot:nth-child(3) { animation-delay: 0.15s; }
-.player-slot:nth-child(4) { animation-delay: 0.35s; }
-.player-slot:nth-child(5) { animation-delay: 0.25s; }
+.team-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
 
-@keyframes playerPop { to { opacity: 1; transform: translateY(0); } }
+.team-logo-placeholder {
+  width: 36px; height: 36px; opacity: 0.35;
+}
 
-.player-avatar {
-  /* FIX #1: 100% ширины слота, но не больше 160px */
-  width: 100%; max-width: 160px;
-  aspect-ratio: 1 / 1;
-  background: url("sg.png") center/contain no-repeat;
-  /* FIX #9: без invert — на светлом фоне силуэт виден */
-  opacity: 0.75;
-  margin-bottom: 10px;
+.team-identity-info { flex: 1; min-width: 0; }
+
+.team-identity-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 4px;
+}
+
+.team-identity-name {
+  font-size: 26px; font-weight: 800; color: #ffffff;
+  letter-spacing: -0.02em; line-height: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Telegram — чёрный прямоугольник справа */
+.team-tg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 16px;
+  height: 40px;
+  border-radius: 10px;
+  background: #000000;
+  color: #fff;
+  text-decoration: none;
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.14);
   transition: all var(--transition);
 }
 
-.player-name {
-  font-size: 12px; font-weight: 600;
-  /* FIX #9: тёмный текст на светлом фоне */
-  color: #555;
-  text-align: center;
-  transition: color var(--transition);
-  font-family: 'IBM Plex Mono', monospace;
-  letter-spacing: 0.04em;
-  width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.team-tg-btn:hover {
+  background: #229ED9;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34,158,217,0.35);
 }
 
-.player-slot:hover .player-avatar { opacity: 1; transform: translateY(-6px) scale(1.04); }
-.player-slot:hover .player-name   { color: var(--text); }
+.team-tg-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+/* Плашка игроков — средний тёмный фон */
+.team-lineup {
+  background: #3a3835;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: none;
+  padding: 0;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 24px;
+  overflow: hidden;
+  opacity: 0;
+  animation: lineupFade 0.6s cubic-bezier(0.4,0,0.2,1) 0.1s forwards;
+}
+
+@keyframes lineupFade { to { opacity: 1; } }
+
+.player-slot {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; min-width: 0;
+  position: relative;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 14px;
+  cursor: default;
+  transition: background var(--transition);
+  opacity: 0;
+  animation: playerPop 0.45s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+.player-slot:last-child { border-right: none; }
+.player-slot:nth-child(1) { animation-delay: 0.15s; }
+.player-slot:nth-child(2) { animation-delay: 0.22s; }
+.player-slot:nth-child(3) { animation-delay: 0.10s; }
+.player-slot:nth-child(4) { animation-delay: 0.28s; }
+.player-slot:nth-child(5) { animation-delay: 0.20s; }
+
+@keyframes playerPop { to { opacity: 1; } }
+
+.player-slot:hover { background: rgba(255,255,255,0.06); }
+
+.player-avatar {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: url("sg.png") bottom/contain no-repeat;
+  filter: brightness(0) invert(1); /* белый силуэт */
+  opacity: 0.80;
+  transition: opacity var(--transition), transform var(--transition);
+  max-height: 160px;
+}
+
+.player-slot:hover .player-avatar { opacity: 1; transform: translateY(-4px) scale(1.03); }
+
+.player-name {
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.80);
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.03em;
+  width: 100%; padding: 0 6px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color var(--transition);
+}
+
+.player-slot:hover .player-name { color: #fff; }
+
+/* ── Логотип в списке команд ── */
+.team-logo {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; overflow: hidden;
+}
+
+.team-logo img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
+.team-logo-svg { width: 18px; height: 18px; opacity: 0.3; }
+
+/* ── Логотип в матчах ── */
+.match-team-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.match-team-logo img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
+.match-team-logo-svg { width: 14px; height: 14px; opacity: 0.28; }
 
 /* ================================
    TEAM INFO GRID — FIX #4 #5
@@ -1010,15 +1142,16 @@ body {
 
   /* Team page */
   .team-page   { padding: 22px var(--pad) 44px; }
-  .team-header { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 22px; }
-  .team-title  { font-size: 28px; }
+  .team-header { margin-bottom: 0; }
+  .team-identity { padding: 14px 16px; gap: 12px; }
+  .team-logo-box { width: 48px; height: 48px; }
+  .team-identity-name { font-size: 20px; }
+  .team-tg-btn { width: 34px; height: 34px; border-radius: 8px; }
 
   /* Lineup — все 5 в один ряд */
   .team-lineup {
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding: 16px 10px 12px;
-    gap: 4px;
   }
 
   .player-slot {
@@ -1027,8 +1160,8 @@ body {
     max-width: none;
   }
 
-  .player-avatar { max-width: 100%; }
-  .player-name   { font-size: 10px; }
+  .player-avatar { max-height: 100px; }
+  .player-name   { font-size: 9px; }
 
   /* Info grid */
   .team-info-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -1068,5 +1201,6 @@ body {
   }
 
   .about-title { font-size: 28px; }
-  .team-title  { font-size: 24px; }
+  .team-identity-name { font-size: 17px; }
+  .team-logo-box { width: 40px; height: 40px; }
 }

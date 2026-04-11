@@ -11,6 +11,18 @@ if (!team) {
   document.title = "VOEX NEWS — " + team.name;
   document.getElementById("team-name").textContent = team.name;
 
+  // ── Лого — из папки logo/ по id команды ──────────────
+  const logoBox = document.getElementById("team-logo-box");
+  logoBox.innerHTML = `<img src="logo/${team.id}.jpg" alt="${team.name}"
+    onerror="this.style.display='none';this.parentElement.innerHTML='<svg class=\'team-logo-placeholder\' viewBox=\'0 0 36 36\' fill=\'none\'><rect x=\'4\' y=\'4\' width=\'28\' height=\'28\' rx=\'6\' stroke=\'white\' stroke-width=\'2\' stroke-dasharray=\'4 3\'/><path d=\'M14 22L18 12L22 22M16 19H20\' stroke=\'white\' stroke-width=\'1.8\' stroke-linecap=\'round\'/></svg>'">`;
+
+  // ── Telegram ──────────────────────────────────────────
+  if (team.telegram) {
+    const tgBtn = document.getElementById("team-tg-btn");
+    tgBtn.href = team.telegram;
+    tgBtn.style.display = "inline-flex";
+  }
+
   // ── Игроки ─────────────────────────────────────────────
   const validPlayers = (team.players || []).filter(p => p && p.trim());
   document.getElementById("team-players").innerHTML = validPlayers.map(p => `
@@ -110,11 +122,21 @@ if (!team) {
       }
 
       const oppTeam = DATABASE.teams.find(t => t.name === oppName);
-      const oppHtml = oppTeam
+
+      // Лого нашей команды и противника из logo/
+      function mLogo(name, id) {
+        return `<div class="match-team-logo"><img src="logo/${id || name}.jpg" alt="${name}" onerror="this.style.display='none'"></div>`;
+      }
+
+      const ourLogoHtml = mLogo(ourName, team.id);
+      const oppLogoHtml = oppTeam ? mLogo(oppName, oppTeam.id) : mLogo(oppName, oppName);
+
+      const oppLink = oppTeam
         ? `<a href="team.html?team=${encodeURIComponent(oppTeam.id)}" class="match-team-link">${oppName}</a>`
         : `<span class="match-team-plain">${oppName}</span>`;
 
       const mapsHtml = (m.maps || [])
+        .filter(mp => mp && mp.trim())
         .map(mp => `<span class="match-map-item">${mp}</span>`)
         .join("");
 
@@ -123,7 +145,7 @@ if (!team) {
           ? `<span class="match-result win">Победа</span>`
           : `<span class="match-result loss">Поражение</span>`;
 
-      return { ourName, oppHtml, score, isWin, resultBadge, mapsHtml,
+      return { ourName, ourLogoHtml, oppLink, oppLogoHtml, score, isWin, resultBadge, mapsHtml,
                date: m.date || "", format: m.format || "" };
     });
 
@@ -137,9 +159,9 @@ if (!team) {
             ${d.resultBadge}
           </div>
           <div class="match-body">
-            <div class="match-team">${d.ourName}</div>
+            <div class="match-team">${d.ourLogoHtml}${d.ourName}</div>
             <div class="match-score">${d.score}</div>
-            <div class="match-team r">${d.oppHtml}</div>
+            <div class="match-team r">${d.oppLogoHtml}${d.oppLink}</div>
           </div>
           ${d.mapsHtml ? `<div class="match-maps">${d.mapsHtml}</div>` : ""}
         </div>`;
