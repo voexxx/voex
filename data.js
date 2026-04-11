@@ -15,9 +15,9 @@ const DATABASE = {
       id: "Ventus Axi",
       name: "Ventus Axi",
       meta: "FACEIT LVL",
-      players: ["m0nday", "JaTz", "v1ns", "argyle", ""],
+      players: ["m0nday", "JaTz", "v1ns", "argyle", "uJL6ab"],
       achievements: [],
-      otherPlayers: ["Yud0qq"]
+      otherPlayers: ["Yud0qq","WIzEr 0_o"]
     },
 
     {
@@ -27,15 +27,6 @@ const DATABASE = {
       players: ["V1zer", "Wackzzy", "Soplenok", "dexperon", "LatypOFF"],
       achievements: [],
       otherPlayers: ["haku666"]
-    },
-
-    {
-      id: "WhiteTeam",
-      name: "White team",
-      meta: "FACEIT LVL",
-      players: ["ecstasy", "Tod0999", "MartyHie", "nikis", "Everest_Rus"],
-      achievements: [],
-      otherPlayers: ["bigkidswag", "depre??ed", "Luck1", "k", "Virtual_child1"]
     },
 
     {
