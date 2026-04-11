@@ -182,6 +182,15 @@ const DATABASE = {
       date: "10 АПР",
       format: "BO3",
       maps: [""]
+    },
+	{
+      id: 2,
+      team1: "Lumen Novara",
+      team2: "SunCry",
+      score: "2:0",
+      date: "11 АПР",
+      format: "BO3",
+      maps: ["Ancient 13:8","Nuke 13:1"]
     }
   ]
 };
