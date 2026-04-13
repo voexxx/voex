@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOEX NEWS — Команда</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader">
+  <div class="page-loader-inner">VOEX NEWS</div>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo">VOEX NEWS <span>CS2</span></div>
+    </a>
+  </div>
+</header>
+
+<main class="team-page">
+
+  <!-- HLTV-style: лого + название + Telegram -->
+  <div class="team-identity" id="team-identity">
+    <div class="team-logo-box" id="team-logo-box">
+      <!-- лого подставляется из data.js (поле logo), иначе — placeholder -->
+      <svg class="team-logo-placeholder" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="28" height="28" rx="6" stroke="white" stroke-width="2" stroke-dasharray="4 3"/>
+        <path d="M14 22L18 12L22 22M16 19H20" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="team-identity-info">
+      <div class="team-identity-label">Команда</div>
+      <div class="team-identity-name" id="team-name"></div>
+    </div>
+    <a id="team-tg-btn" href="#" target="_blank" class="team-tg-btn" style="display:none" title="Telegram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.697l-2.95-.924c-.64-.203-.658-.64.136-.948l11.5-4.432c.537-.194 1.006.131.396.855z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div id="team-points-badge"></div>
+
+  <!-- Блок винрейта -->
+  <div id="team-winrate"></div>
+
+  <div class="team-subtitle">Основной состав</div>
+  <div id="team-players" class="team-lineup"></div>
+
+  <div class="team-info-grid">
+
+    <div class="info-box">
+      <div class="info-title">Достижения</div>
+      <ul id="team-achievements" class="info-list"></ul>
+    </div>
+
+    <div class="info-box">
+      <div class="info-title">Остальные игроки</div>
+      <ul id="team-other" class="info-list"></ul>
+    </div>
+
+    <!-- FIX #4: блок матчей на всю ширину -->
+    <div class="info-box info-box-full">
+      <div class="info-title">Матчи</div>
+      <div id="team-matches" class="team-matches-list"></div>
+    </div>
+
+  </div>
+
+  <!-- FIX #2: history.back возвращает на нужную вкладку -->
+  <a href="index.html" class="back-btn"
+     onclick="if(history.length > 1){ history.back(); event.preventDefault(); }">← Назад</a>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="about.html">О нас</a>
+    </div>
+    <div class="footer-copy">© 2026 VOEX NEWS</div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="team-script.js"></script>
+</body>
+</html>
