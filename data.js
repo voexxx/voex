@@ -115,7 +115,7 @@ const DATABASE = {
       meta: "FACEIT LVL",
       telegram: "https://t.me/BloodOwnersCS",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["Cry","komuqi","mAVR1K","Semen41K","lwftaze"],
-      achievements: ["Reload Cup 3 - place"],
+      achievements: ["Reload Cup  - 3 place","CSLT Clash 2026 - 1 place "],
       otherPlayers: ["mesure","TheKervich","pilotf14","Toys"]
     },
     {
@@ -198,7 +198,36 @@ const DATABASE = {
       players: ["dextrometrophan","DJ","wuthename","hearteater","xleb666"],
       achievements: [],
       otherPlayers: ["swagger","Fayno","ddsnik"]
+    },
+	{
+      id: "Phantom Academy",
+      name: "Phantom Academy",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/phantomespt",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["Hoopz","h1muro21","Lynch","kek","LOW_EXPLUR"],
+      achievements: [],
+      otherPlayers: ["s1lent","brodyaga","stormyrite"]
+    },
+	{
+      id: "Shadow Team",
+      name: "Shadow Team",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/shadowcs2",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["1dkey","lega4y","bl1tzz","auqren","aytizm9"],
+      achievements: [],
+      otherPlayers: []
+    },
+	{
+      id: "Owles Team",
+      name: "Owles Team",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/OwlesTeam",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["v2doO","HoRzy","fl1d","suprime","lazy"],
+      achievements: [],
+      otherPlayers: ["doglime"]
     }
+	
+	
   ],
 
   matches: [
@@ -208,8 +237,8 @@ const DATABASE = {
       team2: "White Team",
       score: "1:0",
       date: "10 АПР",
-      format: "BO3",
-      maps: [""]
+      format: "тех",
+      maps: ["-"]
     },
 	{
       id: 2,
@@ -219,7 +248,91 @@ const DATABASE = {
       date: "11 АПР",
       format: "BO3",
       maps: ["Ancient 13:8","Nuke 13:1"]
+    },
+	{
+      id: 3,
+      team1: "Blood Owners",
+      team2: "Team Expoo",
+      score: "2:0",
+      date: "11 АПР",
+      format: "BO3",
+      maps: ["неизвестно"]
+    },
+	{
+      id: 4,
+      team1: "R8G",
+      team2: "Burmalda",
+      score: "1:0",
+      date: "",
+      format: "тех",
+      maps: ["-"]
+    },
+	{
+      id: 5,
+      team1: "Phantom eSports",
+      team2: "MVTeam",
+      score: "2:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["неизвестно"]
+    },
+	{
+      id: 6,
+      team1: "Ventus Axi",
+      team2: "HYDRA eSports",
+      score: "2:0",
+      date: "13 АПР",
+      format: "B03",
+      maps: ["неизвестно"]
+    },
+	{
+      id: 7,
+      team1: "Warm Ray Team",
+      team2: "Phantom Academy",
+      score: "2:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["неизвестно"]
+    },
+	{
+      id: 8,
+      team1: "Lumen Novara",
+      team2: "Burmalda",
+      score: "1:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 9,
+      team1: "Team Expoo",
+      team2: "Burmalda",
+      score: "1:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 10,
+      team1: "Phantom eSports",
+      team2: "Burmalda",
+      score: "1:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 11,
+      team1: "BCW TEAM",
+      team2: "-",
+      score: "1:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["бонус"]
     }
+	
+	
+	
   ]
 };
 
