@@ -329,10 +329,25 @@ const DATABASE = {
       date: "неизвестно",
       format: "B03",
       maps: ["бонус"]
+    },
+	{
+      id: 12,
+      team1: "Blood Owners",
+      team2: "BlaiZ",
+      score: "2:0",
+      date: "14 АПР",
+      format: "B03",
+      maps: ["Overpass 13:8","Inferno 13:5"]
+    },
+	{
+      id: 13,
+      team1: "Exot Team",
+      team2: "Warm Ray Team",
+      score: "2:0",
+      date: "14 АПР",
+      format: "B03",
+      maps: [""]
     }
-	
-	
-	
   ]
 };
 
