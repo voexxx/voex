@@ -200,15 +200,6 @@ const DATABASE = {
       otherPlayers: ["swagger","Fayno","ddsnik"]
     },
 	{
-      id: "Phantom Academy",
-      name: "Phantom Academy",
-      meta: "FACEIT LVL",
-      telegram: "https://t.me/phantomespt",   // ссылка на тг: "https://t.me/yourteam" или null
-      players: ["Hoopz","h1muro21","Lynch","kek","LOW_EXPLUR"],
-      achievements: [],
-      otherPlayers: ["s1lent","brodyaga","stormyrite"]
-    },
-	{
       id: "Shadow Team",
       name: "Shadow Team",
       meta: "FACEIT LVL",
@@ -347,7 +338,52 @@ const DATABASE = {
       date: "14 АПР",
       format: "B03",
       maps: [""]
-    }
+    },
+	{
+      id: 14,
+      team1: "SunCry",
+      team2: "R8G",
+      score: "0:2",
+      date: "15 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 15,
+      team1: "Ventus Axi",
+      team2: "Phantom Academy",
+      score: "1:0",
+      date: "15 АПР",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 14,
+      team1: "Phantom eSports",
+      team2: "BCW TEAM",
+      score: "2:0",
+      date: "17-21 АПР",
+      format: "B03",
+      maps: ["-"]
+    },
+	{
+      id: 16,
+      team1: "Warm Ray Team",
+      team2: "Phantom eSports",
+      score: "0:2",
+      date: "11-14 АПР",
+      format: "B03",
+      maps: ["-"]
+    },
+	{
+      id: 17,
+      team1: "MVTeam",
+      team2: "-",
+      score: "1:0",
+      date: "неизвестно",
+      format: "B03",
+      maps: ["бонус"]
+    },
   ]
 };
 
