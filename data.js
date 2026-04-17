@@ -384,6 +384,15 @@ const DATABASE = {
       format: "B03",
       maps: ["бонус"]
     },
+	{
+      id: 18,
+      team1: "MVTeam",
+      team2: "Exot Team",
+      score: "0:2",
+      date: "16 АПР",
+      format: "B03",
+      maps: ["Ancient 13-11","Anubis 13-8"]
+    }
   ]
 };
 
