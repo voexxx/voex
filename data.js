@@ -204,7 +204,7 @@ const DATABASE = {
       name: "Shadow Team",
       meta: "FACEIT LVL",
       telegram: "https://t.me/shadowcs2",   // ссылка на тг: "https://t.me/yourteam" или null
-      players: ["1dkey","lega4y","bl1tzz","auqren","aytizm9"],
+      players: ["1dkey","lega4y","bl1tzz","auqren","alviss"],
       achievements: [],
       otherPlayers: []
     },
@@ -216,6 +216,24 @@ const DATABASE = {
       players: ["v2doO","HoRzy","fl1d","suprime","lazy"],
       achievements: [],
       otherPlayers: ["doglime"]
+    },
+	{
+      id: "WR Prodigy",
+      name: "WR Prodigy",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/WarmRayAcademy",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["Nitrovsky","Yakst0","ezips","Hola","Onix"],
+      achievements: [],
+      otherPlayers: [""]
+    },
+	{
+      id: "SAS eSports",
+      name: "SAS eSports",
+      meta: "FACEIT LVL",
+      telegram: "https://t.me/sasesposrtss",   // ссылка на тг: "https://t.me/yourteam" или null
+      players: ["Sasuke Muchaed","22peek","Onlyyy_3","diklan22","marshmello"],
+      achievements: [],
+      otherPlayers: ["broski"]
     }
 	
 	
@@ -368,7 +386,7 @@ const DATABASE = {
     },
 	{
       id: 16,
-      team1: "Warm Ray Team",
+      team1: "WR Prodigy",
       team2: "Phantom eSports",
       score: "0:2",
       date: "11-14 АПР",
@@ -399,6 +417,78 @@ const DATABASE = {
       team2: "Exot Team",
       score: "0:2",
       date: "18 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 20,
+      team1: "HYDRA eSports",
+      team2: "Warm Ray Team",
+      score: "1:0",
+      date: "-",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 21,
+      team1: "Ventus Axi",
+      team2: "Warm Ray Team",
+      score: "0:2",
+      date: "21 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 22,
+      team1: "Ventus Axi",
+      team2: "Blood Owners",
+      score: "2:0",
+      date: "22 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 24,
+      team1: "WR Prodigy",
+      team2: "Exot Team",
+      score: "2:0",
+      date: "11-14 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 26,
+      team1: "Lumen Novara",
+      team2: "MVTeam",
+      score: "0:2",
+      date: "17-21 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 25,
+      team1: "WR Prodigy",
+      team2: "BlaiZ",
+      score: "2:0",
+      date: "17-21 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 26,
+      team1: "HYDRA eSports",
+      team2: "BlaiZ",
+      score: "2:0",
+      date: "21-25 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 26,
+      team1: "HYDRA eSports",
+      team2: "Phantom Academy",
+      score: "2:0",
+      date: "17-21 АПР",
       format: "B03",
       maps: [""]
     }
