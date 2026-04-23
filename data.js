@@ -349,15 +349,6 @@ const DATABASE = {
       maps: ["Overpass 13:8","Inferno 13:5"]
     },
 	{
-      id: 13,
-      team1: "Exot Team",
-      team2: "Warm Ray Team",
-      score: "2:0",
-      date: "14 АПР",
-      format: "B03",
-      maps: [""]
-    },
-	{
       id: 14,
       team1: "SunCry",
       team2: "R8G",
