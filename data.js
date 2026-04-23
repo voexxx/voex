@@ -485,9 +485,9 @@ const DATABASE = {
     },
 	{
       id: 27,
-      team1: "SunCry",
-      team2: "Warm Ray Team",
-      score: "2:0",
+      team1: "Warm Ray Team",
+      team2: "SunCry",
+      score: "0:2",
       date: "21-25 АПР",
       format: "B03",
       maps: [""]
@@ -500,6 +500,15 @@ const DATABASE = {
       date: "21-25 АПР",
       format: "B03",
       maps: [""]
+    },
+	{
+      id: 29,
+      team1: "Lumen Novara",
+      team2: "WR Prodigy",
+      score: "0:1",
+      date: "21-25 АПР",
+      format: "B03",
+      maps: ["тех"]
     }
   ]
 };
