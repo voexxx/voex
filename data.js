@@ -16,9 +16,9 @@ const DATABASE = {
       name: "Ventus Axi",
       meta: "FACEIT LVL",
       telegram: "https://t.me/veaxteam",   // ссылка на тг: "https://t.me/yourteam" или null
-      players: ["m0nday", "JaTz", "v1ns", "argyle", "deadend"],
+      players: ["m0nday", "Yud0qq", "v1ns", "SaQik444", "deadend"],
       achievements: [],
-      otherPlayers: ["Yud0qq","WIzEr 0_o"]
+      otherPlayers: ["","WIzEr 0_o"]
     },
 
     {
@@ -69,7 +69,7 @@ const DATABASE = {
       name: "Lumen Novara",
       meta: "FACEIT LVL",
       telegram: "https://t.me/LUNAtcs2",   // ссылка на тг: "https://t.me/yourteam" или null
-      players: ["sh3f", "wiggzes", "neetsky", "north", "shiy"],
+      players: ["sh3f", "X1DO", "neetsky", "north", "shiy"],
       achievements: [],
       otherPlayers: ["Dimonch4k"]
     },
@@ -141,9 +141,9 @@ const DATABASE = {
       name: "SunCry",
       meta: "FACEIT LVL",
       telegram: "https://t.me/suncryesport",   // ссылка на тг: "https://t.me/yourteam" или null
-      players: ["Romario","Shadow","X1do","Beaut1full","Vinrise"],
+      players: ["Romario","Shadow","Xm1ndY","Beaut1full","Vinrise"],
       achievements: [],
-      otherPlayers: ["King666","Hatyykk"]
+      otherPlayers: ["King666","Hatyykk","wemulz"]
     },
     {
       id: "Barebuh Team",
@@ -469,7 +469,7 @@ const DATABASE = {
       id: 25,
       team1: "WR Prodigy",
       team2: "BlaiZ",
-      score: "2:0",
+      score: "0:2",
       date: "17-21 АПР",
       format: "B03",
       maps: [""]
