@@ -491,6 +491,24 @@ const DATABASE = {
       date: "17-21 АПР",
       format: "B03",
       maps: [""]
+    },
+	{
+      id: 27,
+      team1: "SunCry",
+      team2: "Warm Ray Team",
+      score: "2:0",
+      date: "21-25 АПР",
+      format: "B03",
+      maps: [""]
+    },
+	{
+      id: 28,
+      team1: "BCW TEAM",
+      team2: "Team Expoo",
+      score: "2:0",
+      date: "21-25 АПР",
+      format: "B03",
+      maps: [""]
     }
   ]
 };
