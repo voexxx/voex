@@ -442,7 +442,7 @@ const DATABASE = {
       id: 24,
       team1: "WR Prodigy",
       team2: "Exot Team",
-      score: "2:0",
+      score: "0:2",
       date: "11-14 АПР",
       format: "B03",
       maps: [""]
