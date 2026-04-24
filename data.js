@@ -125,7 +125,7 @@ const DATABASE = {
       telegram: "https://t.me/EXOOTTEAM",   // ссылка на тг: "https://t.me/yourteam" или null
       players: ["VARNEX","VSnipeX","Skyooo","Pr0f1d","Yuki"],
       achievements: [],
-      otherPlayers: ["magixX_2","Mramor"]
+      otherPlayers: ["magixX_2","Mramor","Twix","Mateo","After_dark"]
     },
     {
       id: "Team Expoo",
