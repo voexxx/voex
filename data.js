@@ -2,11 +2,11 @@ const DATABASE = {
   news: [
   {
     id: 1,
-    cat: "NEWS",        // категория
-    date: "10 апреля",       // дата
-    title: "Lumen Novara Academy -> SunCry",
-    desc: "LUNA Ac.-они теперь независимая команда,под названием - SunCry",
-    featured: true        // если хочешь выделить новость — ставь true
+    cat: "",        // категория
+    date: "",       // дата
+    title: "",
+    desc: "",
+    featured:   true      // если хочешь выделить новость — ставь true
   }
 ],
 
@@ -506,6 +506,15 @@ const DATABASE = {
       team1: "Lumen Novara",
       team2: "WR Prodigy",
       score: "0:1",
+      date: "21-25 АПР",
+      format: "B03",
+      maps: ["тех"]
+    },
+	{
+      id: 30,
+      team1: "Exot Team",
+      team2: "R8G",
+      score: "1:0",
       date: "21-25 АПР",
       format: "B03",
       maps: ["тех"]
