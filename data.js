@@ -7,7 +7,7 @@ const DATABASE = {
       title: "Exot Team побеждает турнир One Last Point Cup",
       desc: "Exot Team уверенно забирают титул, обыграв Phantom eSports в гранд‑финале со счётом 2:1.",
       content: "Exot Team стали победителями One Last Point Cup.В финале команда встретилась с Phantom eSports и показала доминирующую игру",
-      image: "",
+      image: "1.png",
       featured: true
     },
   ],
