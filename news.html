@@ -3,49 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VOEX NEWS — Новость</title>
+  <title>VOEX NEWS - Статья</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .news-page {
+      flex: 1;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px var(--pad) 60px;
+    }
+
+    .news-hero-image {
+      width: 100%;
+      height: 400px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--bg2) 0%, var(--border) 100%);
+      margin-bottom: 40px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 80px;
+    }
+
+    .news-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .news-cat-badge {
+      background: var(--surface2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    .news-date {
+      color: var(--muted);
+    }
+
+    .news-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 200;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .news-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    .news-content p {
+      margin-bottom: 18px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid var(--border2);
+      border-radius: 999px;
+      background: var(--surface2);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: all var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .news-page {
+        padding: 60px var(--pad) 40px;
+      }
+
+      .news-hero-image {
+        height: 250px;
+        margin-bottom: 30px;
+      }
+
+      .news-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .news-content {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="page-loader"><div class="page-loader-inner">VOEX NEWS</div></div>
+
 <header class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo-link"><div class="logo">VOEX NEWS <span>CS2</span></div></a>
+    <a href="index.html" class="logo-link">
+      <div class="logo">VOEX NEWS <span>CS2</span></div>
+    </a>
+    <div style="flex: 1;"></div>
+    <a href="index.html" class="header-cta">← На главную</a>
   </div>
 </header>
-<main class="news-page" id="news-page"></main>
+
+<main class="news-page">
+  <div class="news-hero-image" id="news-image">
+    📰
+  </div>
+
+  <div class="news-meta">
+    <span class="news-cat-badge" id="news-cat">Новость</span>
+    <span class="news-date" id="news-date">—</span>
+  </div>
+
+  <h1 class="news-title" id="news-title">—</h1>
+
+  <div class="news-content" id="news-content">
+    <!-- Заполнится JS -->
+  </div>
+
+  <a href="index.html" class="back-link">← Назад к новостям</a>
+</main>
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-links">
       <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
       <span class="footer-sep">·</span>
       <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
-      <span class="footer-sep">·</span>
-      <a class="footer-link" href="about.html">О нас</a>
     </div>
     <div class="footer-copy">© 2026 VOEX NEWS</div>
   </div>
 </footer>
+
 <script src="data.js"></script>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const newsId = parseInt(params.get("id"), 10);
-  const news = (DATABASE.news || []).find(n => n.id === newsId);
-  const container = document.getElementById("news-page");
-  if (!news) {
-    container.innerHTML = `<h1 class="news-page-title">Новость не найдена</h1><p class="news-page-content">Возможно, она была удалена или ссылка устарела.</p><a href="index.html" class="back-btn">← Назад к новостям</a>`;
-    document.title = "VOEX NEWS — Новость не найдена";
-  } else {
-    document.title = "VOEX NEWS — " + news.title;
-    const contentHtml = news.content ? news.content.split("\n").map(p => `<p>${p}</p>`).join("") : `<p>${news.desc || ""}</p>`;
-    container.innerHTML = `
-      <p class="news-page-eyebrow">Новость</p>
-      <div class="news-page-meta"><span class="news-page-cat">${news.cat || "Без категории"}</span><span>${news.date || ""}</span></div>
-      <h1 class="news-page-title">${news.title}</h1>
-      <div class="news-page-content">${contentHtml}</div>
-      <a href="index.html" class="back-btn">← Назад к новостям</a>`;
+  // Получить ID новости из URL
+  function getNewsIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
   }
+
+  // Инициализация
+  function initNewsPage() {
+    const newsId = getNewsIdFromUrl();
+    if (!newsId) {
+      document.querySelector('.news-page').innerHTML = '<p style="padding: 40px; text-align: center; color: var(--muted);">Новость не найдена</p>';
+      return;
+    }
+
+    const news = getNewsById(newsId);
+    if (!news) {
+      document.querySelector('.news-page').innerHTML = '<p style="padding: 40px; text-align: center; color: var(--muted);">Новость не найдена</p>';
+      return;
+    }
+
+    // Заполнить данные
+    document.getElementById('news-cat').textContent = news.cat || 'Новость';
+    document.getElementById('news-date').textContent = news.date || '';
+    document.getElementById('news-title').textContent = news.title;
+    document.getElementById('news-content').innerHTML = `<p>${news.content || news.desc}</p>`;
+
+    // Обработать изображение
+    const imageContainer = document.getElementById('news-image');
+    if (news.image) {
+      imageContainer.innerHTML = `<img src="news/${news.image}" alt="${news.title}">`;
+    }
+
+    document.title = `VOEX NEWS - ${news.title}`;
+  }
+
+  // Запустить при загрузке
+  document.addEventListener('DOMContentLoaded', initNewsPage);
 </script>
 </body>
 </html>

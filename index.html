@@ -18,7 +18,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Hero overlay */
     .hero-overlay {
       position: fixed; inset: 0;
       background: #fff;
@@ -59,7 +58,6 @@
 
   <!-- 1. Главная (лендинг) -->
   <section id="landing" class="page-section active">
-    <!-- Hero -->
     <div class="hero">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
@@ -245,7 +243,7 @@
   // Топ-8 команд
   const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
   const top8 = finalSorted.slice(0, 8);
-  const svgPlaceholder = `<svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px;opacity:0.25"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+  const svgPlaceholder = `<svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px;opacity:0.25"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/></svg>`;
 
   document.getElementById("teams-preview").innerHTML = top8.map(t => {
     const pts = finalMap.get(t.name) ?? 0;
@@ -254,8 +252,7 @@
     return `
       <a href="team.html?team=${safeId}" class="team-preview-card">
         <div class="team-preview-logo">
-          <img src="logo/${safeId}.jpg" alt="${t.name}"
-               onerror="this.style.display='none';this.parentElement.innerHTML='${svgPlaceholder.replace(/'/g,"\\'")}'">
+          <img src="logo/${safeId}.jpg" alt="${t.name}" onerror="this.style.display='none'">
         </div>
         <div>
           <div class="team-preview-name">#${rank} ${t.name}</div>
@@ -283,17 +280,15 @@
   }
 
   // --- Рейтинг ---
-  const svgLogoD = `<rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`;
   document.getElementById("teams-list").innerHTML = finalSorted.map((t, i) => {
-    const rank = rankMap.get(t.name) ?? (i+1);
-    const pts  = finalMap.get(t.name) ?? 0;
+    const rank = rankMap.get(t.name) ?? (i + 1);
+    const pts = finalMap.get(t.name) ?? 0;
     const safeId = encodeURIComponent(t.id);
     return `
       <a href="team.html?team=${safeId}" class="team-card">
         <div class="team-rank">${rank}</div>
         <div class="team-logo">
-          <img src="logo/${safeId}.jpg" alt="${t.name}"
-               onerror="this.outerHTML='<svg class=\\'team-logo-svg\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'>${svgLogoD}</svg>'">
+          <img src="logo/${safeId}.jpg" alt="${t.name}" onerror="this.style.display='none'">
         </div>
         <div class="team-info">
           <div class="team-name">${t.name}</div>
@@ -305,32 +300,32 @@
 
   // --- Матчи ---
   function teamMatchBlock(name, isRight) {
-    const t = (DATABASE.teams||[]).find(t => t.name === name);
+    const t = (DATABASE.teams || []).find(t => t.name === name);
     const safeId = t ? encodeURIComponent(t.id) : '';
     const logoHtml = `<div class="match-team-logo">
-      ${t ? `<img src="logo/${safeId}.jpg" alt="${name}" onerror="this.style.display='none'">` : `<svg class="match-team-logo-svg" viewBox="0 0 24 24" fill="none">${svgLogoD}</svg>`}
+      ${t ? `<img src="logo/${safeId}.jpg" alt="${name}" onerror="this.style.display='none'">` : `<span style="opacity:0.25">—</span>`}
     </div>`;
     const nameHtml = t
       ? `<a href="team.html?team=${safeId}" class="match-team-link">${name}</a>`
-      : `<span class="match-team-plain">${name||"—"}</span>`;
-    return `<div class="match-team${isRight?" r":""}">${logoHtml}${nameHtml}</div>`;
+      : `<span class="match-team-plain">${name || "—"}</span>`;
+    return `<div class="match-team${isRight ? " r" : ""}">${logoHtml}${nameHtml}</div>`;
   }
 
   const matchesList = document.getElementById("matches-list");
-  if ((DATABASE.matches||[]).length > 0) {
+  if ((DATABASE.matches || []).length > 0) {
     matchesList.innerHTML = [...DATABASE.matches].reverse().map(m => `
       <div class="match-card">
         <div class="match-top">
-          <span>${m.date||""}</span>
-          <span>${m.format||""}</span>
+          <span>${m.date || ""}</span>
+          <span>${m.format || ""}</span>
         </div>
         <div class="match-body">
-          ${teamMatchBlock(m.team1||"",false)}
-          <div class="match-score">${m.score||"—:—"}</div>
-          ${teamMatchBlock(m.team2||"",true)}
+          ${teamMatchBlock(m.team1 || "", false)}
+          <div class="match-score">${m.score || "—:—"}</div>
+          ${teamMatchBlock(m.team2 || "", true)}
         </div>
         <div class="match-maps">
-          ${(m.maps||[]).filter(mp=>mp&&mp.trim()&&mp!=="-").map(mp=>`<span class="match-map-item">${mp}</span>`).join("")}
+          ${(m.maps || []).filter(mp => mp && mp.trim() && mp !== "-").map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
         </div>
       </div>`).join("");
   } else {
@@ -339,18 +334,18 @@
 
   // --- Трансферы ---
   const typeLabel = {
-    join:  { text:"Переход",   cls:"tf-join" },
-    leave: { text:"Уход",      cls:"tf-leave" },
-    loan:  { text:"Аренда",    cls:"tf-loan" },
-    free:  { text:"Свободный", cls:"tf-free" }
+    join: { text: "Переход", cls: "tf-join" },
+    leave: { text: "Уход", cls: "tf-leave" },
+    loan: { text: "Аренда", cls: "tf-loan" },
+    free: { text: "Свободный", cls: "tf-free" }
   };
   const transfersList = document.getElementById("transfers-list");
-  const transfers = [...(DATABASE.transfers||[])].sort((a,b)=>b.id-a.id);
+  const transfers = [...(DATABASE.transfers || [])].sort((a, b) => b.id - a.id);
   if (transfers.length > 0) {
     transfersList.innerHTML = transfers.map(t => {
-      const tl = typeLabel[t.type] || {text:t.type, cls:"tf-join"};
-      const fromTeam = DATABASE.teams.find(x=>x.name===t.from);
-      const toTeam   = DATABASE.teams.find(x=>x.name===t.to);
+      const tl = typeLabel[t.type] || { text: t.type, cls: "tf-join" };
+      const fromTeam = DATABASE.teams.find(x => x.name === t.from);
+      const toTeam = DATABASE.teams.find(x => x.name === t.to);
       const fromLink = fromTeam
         ? `<a href="team.html?team=${encodeURIComponent(fromTeam.id)}" class="tf-team-link">${t.from}</a>`
         : `<span class="tf-team-plain">${t.from}</span>`;
@@ -360,7 +355,7 @@
       return `
         <div class="transfer-card">
           <div class="transfer-meta">
-            <span class="transfer-date">${t.date||""}</span>
+            <span class="transfer-date">${t.date || ""}</span>
             <span class="transfer-type ${tl.cls}">${tl.text}</span>
           </div>
           <div class="transfer-body">
