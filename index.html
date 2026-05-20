@@ -4,44 +4,183 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOEX NEWS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .page-section {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .page-section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Hero overlay */
+    .hero-overlay {
+      position: fixed; inset: 0;
+      background: #fff;
+      z-index: 1000;
+      pointer-events: none;
+      animation: heroReveal 1s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;
+    }
+    @keyframes heroReveal {
+      0% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- PAGE LOADER -->
-<div class="page-loader">
-  <div class="page-loader-inner">VOEX NEWS</div>
-</div>
+<div class="hero-overlay"></div>
+<div class="page-loader"><div class="page-loader-inner">VOEX NEWS</div></div>
 
+<!-- HEADER -->
 <header class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo-link">
+    <a href="#" class="logo-link" id="logo-home">
       <div class="logo">VOEX NEWS <span>CS2</span></div>
     </a>
-    <div class="tabs">
-      <button class="tab active" data-tab="news">Новости</button>
-      <button class="tab" data-tab="teams">Рейтинг</button>
-      <button class="tab" data-tab="matches">Матчи</button>
-    </div>
+    <nav class="header-nav">
+      <button type="button" class="nav-link active" data-page="landing">Главная</button>
+      <button type="button" class="nav-link" data-page="news-section">Новости</button>
+      <button type="button" class="nav-link" data-page="teams-section">Рейтинг</button>
+      <button type="button" class="nav-link" data-page="matches-section">Матчи</button>
+      <button type="button" class="nav-link" data-page="transfers-section">Трансферы</button>
+    </nav>
+    <a href="https://t.me/voexnews" target="_blank" class="header-cta">Telegram</a>
   </div>
 </header>
 
-<main class="main">
+<!-- Основной контейнер -->
+<main class="landing">
 
-  <section id="news" class="section active">
-    <div class="sec-hdr"><div class="sec-title">Новости</div></div>
-    <div id="news-list" class="news-list"></div>
+  <!-- 1. Главная (лендинг) -->
+  <section id="landing" class="page-section active">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Сезон 2026 активен
+      </div>
+      <h1 class="hero-title">
+        VOEX<br><strong>NEWS</strong>
+      </h1>
+      <p class="hero-sub">
+        Новостная организация мира Counter‑Strike 2. Рейтинги команд, результаты матчей и эксклюзивные материалы.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" id="goto-news">Смотреть новости</a>
+        <a href="about.html" class="btn-secondary">О нас</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <section class="stats-section reveal-section">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num"><strong id="stat-teams">24</strong></span>
+          <span class="stat-label">Команды в рейтинге</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><strong id="stat-matches">30</strong><span style="font-weight:200">+</span></span>
+          <span class="stat-label">Сыгранных матчей</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><strong>100</strong><span style="font-weight:200">+</span></span>
+          <span class="stat-label">Игроков в базе</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num"><strong>2026</strong></span>
+          <span class="stat-label">Активный сезон</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section reveal-section">
+      <p class="section-eyebrow">Что мы делаем</p>
+      <h2 class="section-title">Всё о CS2 сцене<br><strong>в одном месте</strong></h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Авторейтинг</div>
+          <div class="feature-desc">Очки считаются автоматически. +25 за победу, бонусы за апсет. Таблица обновляется с каждым матчем.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Результаты матчей</div>
+          <div class="feature-desc">Все матчи сезона с картами, счётом и детальной статистикой игроков.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <div class="feature-title">Трансферы</div>
+          <div class="feature-desc">Следи за переходами игроков между командами в реальном времени.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teams preview -->
+    <section class="teams-preview-section reveal-section">
+      <div class="teams-preview-inner">
+        <p class="section-eyebrow">Топ команды</p>
+        <h2 class="section-title">Лидеры<br><strong>сезона</strong></h2>
+        <div class="teams-preview-grid" id="teams-preview"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section reveal-section">
+      <div class="cta-inner">
+        <h2 class="cta-title">Следи за<br><strong>сценой</strong></h2>
+        <p class="cta-sub">Подписывайся на Telegram-канал и получай уведомления о матчах и новостях первым.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a href="https://t.me/voexnews" target="_blank" class="btn-primary">Telegram канал</a>
+          <a href="#" class="btn-secondary" id="goto-rating">Открыть рейтинг</a>
+        </div>
+      </div>
+    </section>
   </section>
 
-  <section id="teams" class="section">
-    <div class="sec-hdr"><div class="sec-title">Рейтинг</div></div>
-    <div id="teams-list" class="teams-list"></div>
+  <!-- 2. Новости -->
+  <section id="news-section" class="page-section">
+    <div class="app-main">
+      <h1 class="app-section-title">Новости</h1>
+      <p class="app-section-sub">Последние события CS2 сцены</p>
+      <div id="news-list" class="news-list"></div>
+    </div>
   </section>
 
-  <section id="matches" class="section">
-    <div class="sec-hdr"><div class="sec-title">Матчи</div></div>
-    <div id="matches-list" class="matches-list"></div>
+  <!-- 3. Рейтинг -->
+  <section id="teams-section" class="page-section">
+    <div class="app-main">
+      <h1 class="app-section-title">Рейтинг</h1>
+      <p class="app-section-sub">Таблица считается автоматически по результатам матчей</p>
+      <div id="teams-list" class="teams-list"></div>
+    </div>
+  </section>
+
+  <!-- 4. Матчи -->
+  <section id="matches-section" class="page-section">
+    <div class="app-main">
+      <h1 class="app-section-title">Матчи</h1>
+      <p class="app-section-sub">Все результаты сезона</p>
+      <div id="matches-list" class="matches-list"></div>
+    </div>
+  </section>
+
+  <!-- 5. Трансферы -->
+  <section id="transfers-section" class="page-section">
+    <div class="app-main">
+      <h1 class="app-section-title">Трансферы</h1>
+      <p class="app-section-sub">Переходы игроков между командами</p>
+      <div id="transfers-list" class="transfers-list"></div>
+    </div>
   </section>
 
 </main>
@@ -62,126 +201,189 @@
 <script src="data.js"></script>
 <script src="engine.js"></script>
 <script>
-  // ── Tab switching ──────────────────────────────────────
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelector(".tab.active").classList.remove("active");
-      tab.classList.add("active");
-      const prev = document.querySelector(".section.active");
-      const next = document.getElementById(tab.dataset.tab);
-      if (prev === next) return;
-      prev.classList.remove("active");
-      next.classList.add("active");
-      sessionStorage.setItem("lastTab", tab.dataset.tab);
-    });
-  });
+  // ════════════ Управление вкладками ════════════
+  const navButtons = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.page-section');
 
-  // FIX #2: восстанавливаем нужную вкладку после возврата с team.html
-  const lastTab = sessionStorage.getItem("lastTab");
-  if (lastTab) {
-    sessionStorage.removeItem("lastTab");
-    const tTab = document.querySelector(`.tab[data-tab="${lastTab}"]`);
-    const tSec = document.getElementById(lastTab);
-    if (tTab && tSec) {
-      document.querySelector(".tab.active").classList.remove("active");
-      document.querySelector(".section.active").classList.remove("active");
-      tTab.classList.add("active");
-      tSec.classList.add("active");
-    }
+  function switchPage(pageId) {
+    navButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.page === pageId));
+    sections.forEach(sec => sec.classList.toggle('active', sec.id === pageId));
+    sessionStorage.setItem('activePage', pageId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ── News ───────────────────────────────────────────────
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => switchPage(btn.dataset.page));
+  });
+
+  // Восстановление вкладки
+  const savedPage = sessionStorage.getItem('activePage');
+  if (savedPage && document.getElementById(savedPage)) {
+    switchPage(savedPage);
+  }
+
+  // Кнопки внутри лендинга
+  document.getElementById('goto-news')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchPage('news-section');
+  });
+  document.getElementById('goto-rating')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchPage('teams-section');
+  });
+  document.getElementById('logo-home')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    switchPage('landing');
+  });
+
+  // ════════════ Статистика и данные ════════════
+  const teams = DATABASE.teams || [];
+  const matches = DATABASE.matches || [];
+  document.getElementById("stat-teams").textContent = teams.length;
+  document.getElementById("stat-matches").textContent = matches.length;
+
+  // Топ-8 команд
+  const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
+  const top8 = finalSorted.slice(0, 8);
+  const svgPlaceholder = `<svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px;opacity:0.25"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+
+  document.getElementById("teams-preview").innerHTML = top8.map(t => {
+    const pts = finalMap.get(t.name) ?? 0;
+    const rank = rankMap.get(t.name) ?? "—";
+    const safeId = encodeURIComponent(t.id);
+    return `
+      <a href="team.html?team=${safeId}" class="team-preview-card">
+        <div class="team-preview-logo">
+          <img src="logo/${safeId}.jpg" alt="${t.name}"
+               onerror="this.style.display='none';this.parentElement.innerHTML='${svgPlaceholder.replace(/'/g,"\\'")}'">
+        </div>
+        <div>
+          <div class="team-preview-name">#${rank} ${t.name}</div>
+          <div class="team-preview-pts">${pts} pts</div>
+        </div>
+      </a>`;
+  }).join("");
+
+  // ════════════ Контент вкладок ════════════
+  // --- Новости ---
   const newsList = document.getElementById("news-list");
-  if (DATABASE.news && DATABASE.news.length > 0) {
-    newsList.innerHTML = DATABASE.news.map(n => `
-      <div class="news-card ${n.featured ? "featured" : ""}">
+  const news = (DATABASE.news || []).filter(n => n.title);
+  if (news.length > 0) {
+    newsList.innerHTML = news.map(n => `
+      <a href="news.html?id=${n.id}" class="news-card ${n.featured ? "featured" : ""}">
         <div class="news-card-top">
           <span class="news-cat">${n.cat || "Новость"}</span>
           <span>${n.date || ""}</span>
         </div>
         <div class="news-title">${n.title}</div>
         <p>${n.desc || ""}</p>
-      </div>
-    `).join("");
+      </a>`).join("");
   } else {
     newsList.innerHTML = `<div class="news-empty">Новостей пока нет — следите за обновлениями</div>`;
   }
 
-  // ── Teams — автоматический ранг и очки через VOEX.engine ──
-  const { finalMap, rankMap, finalSorted } = VOEX.buildRankings();
-
-  // Хелпер: SVG-placeholder для лого
-  const logoPlaceholder = `<svg class="team-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-  </svg>`;
-
-  // Хелпер: лого команды по id (папка logo/)
-  function getLogoHtml(team, cls, size) {
-    const logoSrc = `logo/${team.id}.jpg`;
-    return `<div class="${cls}">
-      <img src="${logoSrc}" alt="${team.name}"
-           onerror="this.parentElement.innerHTML='${logoPlaceholder.replace(/"/g, '&quot;')}'">
-    </div>`;
-  }
-
+  // --- Рейтинг ---
+  const svgLogoD = `<rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`;
   document.getElementById("teams-list").innerHTML = finalSorted.map((t, i) => {
-    const rank = rankMap.get(t.name) ?? (i + 1);
+    const rank = rankMap.get(t.name) ?? (i+1);
     const pts  = finalMap.get(t.name) ?? 0;
+    const safeId = encodeURIComponent(t.id);
     return `
-    <a href="team.html?team=${encodeURIComponent(t.id)}" class="team-card"
-       onclick="sessionStorage.setItem('lastTab','teams')">
-      <div class="team-rank">${rank}</div>
-      ${getLogoHtml(t, "team-logo")}
-      <div class="team-info">
-        <div class="team-name">${t.name}</div>
-        <div class="team-meta">${t.meta}</div>
-      </div>
-      <div class="team-points">${pts} pts</div>
-    </a>`;
+      <a href="team.html?team=${safeId}" class="team-card">
+        <div class="team-rank">${rank}</div>
+        <div class="team-logo">
+          <img src="logo/${safeId}.jpg" alt="${t.name}"
+               onerror="this.outerHTML='<svg class=\\'team-logo-svg\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\'>${svgLogoD}</svg>'">
+        </div>
+        <div class="team-info">
+          <div class="team-name">${t.name}</div>
+          <div class="team-meta">${t.meta}</div>
+        </div>
+        <div class="team-points">${pts} pts</div>
+      </a>`;
   }).join("");
 
-  // ── Matches ────────────────────────────────────────────
-  // team1: [лого][ник]  score  [ник][лого] :team2
-  function teamMatchBlock(name, isRight, tab) {
-    const t = (DATABASE.teams || []).find(t => t.name === name);
-    const logoSrc = t ? `logo/${t.id}.jpg` : null;
-
-    const logoHtml = `<div class="match-team-logo">${
-      logoSrc
-        ? `<img src="${logoSrc}" alt="${name}" onerror="this.style.display='none'">`
-        : `<svg class="match-team-logo-svg" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M9 15l3-7 3 7M10.5 13h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`
-    }</div>`;
-
+  // --- Матчи ---
+  function teamMatchBlock(name, isRight) {
+    const t = (DATABASE.teams||[]).find(t => t.name === name);
+    const safeId = t ? encodeURIComponent(t.id) : '';
+    const logoHtml = `<div class="match-team-logo">
+      ${t ? `<img src="logo/${safeId}.jpg" alt="${name}" onerror="this.style.display='none'">` : `<svg class="match-team-logo-svg" viewBox="0 0 24 24" fill="none">${svgLogoD}</svg>`}
+    </div>`;
     const nameHtml = t
-      ? `<a href="team.html?team=${encodeURIComponent(t.id)}" class="match-team-link" onclick="sessionStorage.setItem('lastTab','${tab}')">${name}</a>`
-      : `<span class="match-team-plain">${name || "—"}</span>`;
-
-    // CSS flex-direction: row-reverse на .match-team.r даёт порядок: ник → лого
-    return `<div class="match-team${isRight ? " r" : ""}">${logoHtml}${nameHtml}</div>`;
+      ? `<a href="team.html?team=${safeId}" class="match-team-link">${name}</a>`
+      : `<span class="match-team-plain">${name||"—"}</span>`;
+    return `<div class="match-team${isRight?" r":""}">${logoHtml}${nameHtml}</div>`;
   }
+
   const matchesList = document.getElementById("matches-list");
-  if (DATABASE.matches && DATABASE.matches.length > 0) {
-    matchesList.innerHTML = DATABASE.matches.map(m => `
+  if ((DATABASE.matches||[]).length > 0) {
+    matchesList.innerHTML = [...DATABASE.matches].reverse().map(m => `
       <div class="match-card">
         <div class="match-top">
-          <span>${m.date || ""}</span>
-          <span>${m.format || ""}</span>
+          <span>${m.date||""}</span>
+          <span>${m.format||""}</span>
         </div>
         <div class="match-body">
-          ${teamMatchBlock(m.team1 || "", false, "matches")}
-          <div class="match-score">${m.score || "— : —"}</div>
-          ${teamMatchBlock(m.team2 || "", true, "matches")}
+          ${teamMatchBlock(m.team1||"",false)}
+          <div class="match-score">${m.score||"—:—"}</div>
+          ${teamMatchBlock(m.team2||"",true)}
         </div>
         <div class="match-maps">
-          ${(m.maps || []).filter(mp => mp && mp.trim()).map(mp => `<span class="match-map-item">${mp}</span>`).join("")}
+          ${(m.maps||[]).filter(mp=>mp&&mp.trim()&&mp!=="-").map(mp=>`<span class="match-map-item">${mp}</span>`).join("")}
         </div>
-      </div>
-    `).join("");
+      </div>`).join("");
   } else {
     matchesList.innerHTML = `<div class="news-empty">Матчей пока нет</div>`;
   }
-</script>
 
+  // --- Трансферы ---
+  const typeLabel = {
+    join:  { text:"Переход",   cls:"tf-join" },
+    leave: { text:"Уход",      cls:"tf-leave" },
+    loan:  { text:"Аренда",    cls:"tf-loan" },
+    free:  { text:"Свободный", cls:"tf-free" }
+  };
+  const transfersList = document.getElementById("transfers-list");
+  const transfers = [...(DATABASE.transfers||[])].sort((a,b)=>b.id-a.id);
+  if (transfers.length > 0) {
+    transfersList.innerHTML = transfers.map(t => {
+      const tl = typeLabel[t.type] || {text:t.type, cls:"tf-join"};
+      const fromTeam = DATABASE.teams.find(x=>x.name===t.from);
+      const toTeam   = DATABASE.teams.find(x=>x.name===t.to);
+      const fromLink = fromTeam
+        ? `<a href="team.html?team=${encodeURIComponent(fromTeam.id)}" class="tf-team-link">${t.from}</a>`
+        : `<span class="tf-team-plain">${t.from}</span>`;
+      const toLink = toTeam
+        ? `<a href="team.html?team=${encodeURIComponent(toTeam.id)}" class="tf-team-link">${t.to}</a>`
+        : `<span class="tf-team-plain">${t.to}</span>`;
+      return `
+        <div class="transfer-card">
+          <div class="transfer-meta">
+            <span class="transfer-date">${t.date||""}</span>
+            <span class="transfer-type ${tl.cls}">${tl.text}</span>
+          </div>
+          <div class="transfer-body">
+            <span class="transfer-player">${t.player}</span>
+            <div class="transfer-route">${fromLink}<span class="transfer-arrow">→</span>${toLink}</div>
+          </div>
+        </div>`;
+    }).join("");
+  } else {
+    transfersList.innerHTML = `<div class="news-empty">Трансферов пока нет</div>`;
+  }
+
+  // Intersection Observer для reveal-секций
+  const revealSections = document.querySelectorAll('.reveal-section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealSections.forEach(section => observer.observe(section));
+</script>
 </body>
 </html>

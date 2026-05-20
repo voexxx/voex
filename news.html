@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOEX NEWS — Новость</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-loader"><div class="page-loader-inner">VOEX NEWS</div></div>
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link"><div class="logo">VOEX NEWS <span>CS2</span></div></a>
+  </div>
+</header>
+<main class="news-page" id="news-page"></main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a class="footer-link" href="https://t.me/voexnews" target="_blank">Telegram</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="https://discord.gg/jpZfktsR" target="_blank">Discord</a>
+      <span class="footer-sep">·</span>
+      <a class="footer-link" href="about.html">О нас</a>
+    </div>
+    <div class="footer-copy">© 2026 VOEX NEWS</div>
+  </div>
+</footer>
+<script src="data.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const newsId = parseInt(params.get("id"), 10);
+  const news = (DATABASE.news || []).find(n => n.id === newsId);
+  const container = document.getElementById("news-page");
+  if (!news) {
+    container.innerHTML = `<h1 class="news-page-title">Новость не найдена</h1><p class="news-page-content">Возможно, она была удалена или ссылка устарела.</p><a href="index.html" class="back-btn">← Назад к новостям</a>`;
+    document.title = "VOEX NEWS — Новость не найдена";
+  } else {
+    document.title = "VOEX NEWS — " + news.title;
+    const contentHtml = news.content ? news.content.split("\n").map(p => `<p>${p}</p>`).join("") : `<p>${news.desc || ""}</p>`;
+    container.innerHTML = `
+      <p class="news-page-eyebrow">Новость</p>
+      <div class="news-page-meta"><span class="news-page-cat">${news.cat || "Без категории"}</span><span>${news.date || ""}</span></div>
+      <h1 class="news-page-title">${news.title}</h1>
+      <div class="news-page-content">${contentHtml}</div>
+      <a href="index.html" class="back-btn">← Назад к новостям</a>`;
+  }
+</script>
+</body>
+</html>
